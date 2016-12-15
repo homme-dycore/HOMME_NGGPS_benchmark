@@ -20,8 +20,7 @@ how to configure the High Order Methods Modeling Environment (HOMME) for the 13k
  Untar the file homme1_3_26.tar.gz which will create a directory structure the root of which will be reffered to as $HOMMEDIR.  You will need to replace the existing file src/baroclinic_inst_mod.F90 with the patched version provided inorder to initialize the problem correctly.  
 
  A recent version of the netcdf library needs to be installed on the platform in which you intend to install
-HOMME.  You will also need a cmake version that is at least 2.8.10.2 or newer.  
-General directions for configuring and building HOMME using cmake can be located at the following URL
+HOMME.  You will also need a cmake version that is at least 2.8.10.2 or newer. General directions for configuring and building HOMME using cmake can be located at the following URL
 
     https://wiki.ucar.edu/display/homme/The+HOMME+CMake+build+and+testing+system
 
@@ -79,7 +78,9 @@ files for the benchmarks are configured to run for 16 hours of model time, and w
 -----------------
 
 System: Edison
+
 Date:   June 2015
+
 Version: 
 
 | Cores   | Nodes   | Elapsed time (seconds) (2h, average) |
