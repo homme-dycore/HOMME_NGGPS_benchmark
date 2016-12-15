@@ -8,11 +8,13 @@ how to configure the High Order Methods Modeling Environment (HOMME) for the 13k
 
   The following files are provided to simplify the execution of this benchmark.  
 
-  * README.md                   A readme file to describe the benchmark
-  * nggps_ne32.nl            A low resolution 100km version of the benchmark to simplify testing.
-  * nggps_ne256.nl           A full resolution 13km version of the benchmark.
-  * homme1_3_26.tar.gz       A tar file containing the version of the HOMME source code.
-  * baroclinic_inst_mod.F90  A patched version of a source file necessary to initialize the problem.  
+```
+  README.md                A readme file to describe the benchmark
+  nggps_ne32.nl            A low resolution 100km version of the benchmark to simplify testing.
+  nggps_ne256.nl           A full resolution 13km version of the benchmark.
+  homme1_3_26.tar.gz       A tar file containing the version of the HOMME source code.
+  baroclinic_inst_mod.F90  A patched version of a source file necessary to initialize the problem.  
+```
 
 
  Untar the file homme1_3_26.tar.gz which will create a directory structure the root of which will be reffered to as $HOMMEDIR.  You will need to replace the existing file src/baroclinic_inst_mod.F90 with the patched version provided inorder to initialize the problem correctly.  
@@ -76,20 +78,18 @@ files for the benchmarks are configured to run for 16 hours of model time, and w
 ## Sample Results:
 -----------------
 
-```
 System: Edison
 Date:   June 2015
 Version: 
 
-Cores   Nodes   Elapsed time (seconds) (2h, average)
-----------------------------------------------------
-6144     256     66.54
-12288    512     33.38
-24576   1024     16.34
-49152   2048      7.79
-98304   4096      3.28
-131072  5462      2.48
-```
+| Cores   | Nodes   | Elapsed time (seconds) (2h, average) |
+| ------- |:-------:| ------------------------------------:|
+|6144     | 256     | 66.54 |
+|12288    | 512     | 33.38 |
+|24576    | 1024    | 16.34 |
+|49152    | 2048    |  7.79 |
+|98304    | 4096    |  3.28 |
+|131072   | 5462    |  2.48 |
 
 
 ```
