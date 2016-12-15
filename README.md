@@ -79,7 +79,6 @@ files for the benchmarks are configured to run for 16 hours of model time, and w
 
 System: Edison 
 Date:   June 2015
-
 Version: 
 
 | Cores   | Nodes   | Elapsed time (seconds) (2h, average) |
@@ -93,7 +92,9 @@ Version:
 
 
 System:  Yellowstone 
+
 Date:    November 2016
+
 Version tag: dungeon12 
 
 | Cores   |   Nodes  | Elapsed time (seconds (2h, average) |
