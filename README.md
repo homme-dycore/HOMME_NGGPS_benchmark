@@ -47,7 +47,9 @@ cmake -C $HOMMEDIR/cmake/machineFiles/$MACH.cmake -DQSIZE_D=10 -DPREQX_PLEV=128 
    Note that $MACH is one of the supported cmake machine files found in the directory $HOMMEDIR/cmake/makeFILes/ and 
 $HOMMEDIR is the installation path where the contents of homme1_3_26.tar.gz was placed.  Once the cmake has been configured is is possible to build the executible using the following command:
 
+```
    make -j 6 preqx   
+```
 
 
    Once the executible has been built we recommend creating the following directory $BUILDDIR/tests/NGGPS. Copy the provide namelist files nggps_ne32.nl and nggps_ne256.nl into the $BUILDDIR/tests/NGGPS directory, and create any necessary runscripts in this directory as well.  You will also need to create a "movies" and "vcoord" subdirectory in the $BUILDDIR/tests/NGGPS directory.  In the vcoord directory you will need to copy the vertical coordinate files which can be created in the following manner:
@@ -61,8 +63,10 @@ Copy the two ascii files that are generated into the $BUILDDIR/tests/NGGPS/vcoor
 You should now be ready to submit and run the NGGPS benchmark from the $BUILDDIR/tests/NGGPS directory. The namelist 
 files for the benchmarks are configured to run for 16 hours of model time, and will generate a HommeTime_stats file at the completion of a run. The total time to complete the timestep piece of HOMME is indicated by the prim_run timer in the HommeTime_stats file.  For example:
 
+```
   > grep prim_run HommeTime_stats 
  prim_run             1024     1024 4.915200e+05   4.824771e+06  4711.804 (   264      0)  4711.623 (   770      0)
+```
 
    The number 4711.804 is the maximum amount of time in seconds that the run took on the slowest MPI rank.  When reporting the execution time for the NGGPS benchmark please divide this number by 8 to indcate the time it takes to execute 2 hours.  So a value of 588.97 seconds would be reported. When reporting execution time please include both the number of cores, nodes and elapsed time as well as the date and platform on which it was collected.  Some sample timings are provided below.
   
@@ -70,8 +74,10 @@ files for the benchmarks are configured to run for 16 hours of model time, and w
 ## Sample Results:
 -----------------
 
+```
 System: Edison
 Date:   June 2015
+Version: 
 
 Cores   Nodes   Elapsed time (seconds) (2h, average)
 ----------------------------------------------------
@@ -81,15 +87,18 @@ Cores   Nodes   Elapsed time (seconds) (2h, average)
 49152   2048      7.79
 98304   4096      3.28
 131072  5462      2.48
+```
 
 
+```
 System:  Yellowstone 
 Date:    November 2016
-Version: tag: dungeon12 
+Version tag: dungeon12 
 
 Cores     Nodes  Elapsed time (seconds (2h, average)
 ----------------------------------------------------
 1024      64     588.97
+```
 
  
 ## A full description of the dynamical core and configuration is provided below for reference.
