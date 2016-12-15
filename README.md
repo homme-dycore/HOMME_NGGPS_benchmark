@@ -77,8 +77,7 @@ files for the benchmarks are configured to run for 16 hours of model time, and w
 ## Sample Results:
 -----------------
 
-System: Edison
-
+System: Edison 
 Date:   June 2015
 
 Version: 
