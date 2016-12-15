@@ -53,7 +53,7 @@ $HOMMEDIR is the installation path where the contents of homme1_3_26.tar.gz was 
 ```
 
 
-   Once the executible has been built we recommend creating the following directory $BUILDDIR/tests/NGGPS. Copy the provide namelist files nggps_ne32.nl and nggps_ne256.nl into the $BUILDDIR/tests/NGGPS directory, and create any necessary runscripts in this directory as well.  You will also need to create a "movies" and "vcoord" subdirectory in the $BUILDDIR/tests/NGGPS directory.  In the vcoord directory you will need to copy the vertical coordinate files which can be created in the following manner:
+   Once the executible has been built we recommend creating the following directory $BUILDDIR/tests/NGGPS. Copy the provide namelist files nggps_ne32.nl and nggps_ne256.nl into the $BUILDDIR/tests/NGGPS directory, and create any necessary runscripts in this directory as well.  You will also need to create a "movies" subdirectory in the $BUILDDIR/tests/NGGPS directory.  In will also need to copy the vertical coordinate files into the $BUILDDIR/tests/NCCPS directory which can be created in the following manner:
     
 ```
 cd $HOMMEDIR/test/vcoord

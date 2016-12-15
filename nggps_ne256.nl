@@ -1,7 +1,5 @@
 &ctl_nl
-horz_num_threads = 1
-vert_num_threads = 1
-tracer_num_threads = 1
+nthreads = 1
 partmethod    = 4
 topology      = "cube"
 test_case     = "jw_baroclinic"
