@@ -1,6 +1,6 @@
 # HOMME_NGGPS_benchmark
 
-Configuring a 13km AVEC benchmark for the High Order Methods Modeling Environment (HOMME)
+## Configuring a 13km AVEC benchmark for the High Order Methods Modeling Environment (HOMME)
 
   The AVEC benchmark was defined and used as part of the Next Generation Global Prediction System (NGGPS) 
 dynamica core testing plan. A 13km and a 3km resoution tests case were defined.  This document describes 
@@ -27,7 +27,7 @@ General directions for configuring and building HOMME using cmake can be located
 that  explicitly build the benchmark configuration. In a separate directory different from the source code, create 
 a cmake configuration script with the following contents.  Note that we refer to this directory as $BUILDDIR
 
-#------------------------------------------------------------
+```#------------------------------------------------------------
 #!/bin/csh 
 rm -rf CMakeFIles CMakeCache.txt
 
@@ -42,6 +42,7 @@ cmake -C $HOMMEDIR/cmake/machineFiles/$MACH.cmake -DQSIZE_D=10 -DPREQX_PLEV=128 
       -DPREQX_USE_ENERGY=FALSE preqx \
       $HOMMEDIR
 #------------------------------------------------------------
+```
 
    Note that $MACH is one of the supported cmake machine files found in the directory $HOMMEDIR/cmake/makeFILes/ and 
 $HOMMEDIR is the installation path where the contents of homme1_3_26.tar.gz was placed.  Once the cmake has been configured is is possible to build the executible using the following command:
@@ -66,7 +67,7 @@ files for the benchmarks are configured to run for 16 hours of model time, and w
    The number 4711.804 is the maximum amount of time in seconds that the run took on the slowest MPI rank.  When reporting the execution time for the NGGPS benchmark please divide this number by 8 to indcate the time it takes to execute 2 hours.  So a value of 588.97 seconds would be reported. When reporting execution time please include both the number of cores, nodes and elapsed time as well as the date and platform on which it was collected.  Some sample timings are provided below.
   
 
-Sample Results:
+## Sample Results:
 -----------------
 
 System: Edison
@@ -91,8 +92,7 @@ Cores     Nodes  Elapsed time (seconds (2h, average)
 1024      64     588.97
 
  
-A full description of the dynamical core and configuration is provided below for reference.
-   
+## A full description of the dynamical core and configuration is provided below for reference.
 
 Model: HOMME
 Numerical Method: Spectral element 
