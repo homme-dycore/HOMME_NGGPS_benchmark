@@ -8,11 +8,11 @@ how to configure the High Order Methods Modeling Environment (HOMME) for the 13k
 
   The following files are provided to simplify the execution of this benchmark.  
 
-  README                   A readme file to describe the benchmark
-  nggps_ne32.nl            A low resolution 100km version of the benchmark to simplify testing.
-  nggps_ne256.nl           A full resolution 13km version of the benchmark.
-  homme1_3_26.tar.gz       A tar file containing the version of the HOMME source code.
-  baroclinic_inst_mod.F90  A patched version of a source file necessary to initialize the problem.  
+  * README.md                   A readme file to describe the benchmark
+  * nggps_ne32.nl            A low resolution 100km version of the benchmark to simplify testing.
+  * nggps_ne256.nl           A full resolution 13km version of the benchmark.
+  * homme1_3_26.tar.gz       A tar file containing the version of the HOMME source code.
+  * baroclinic_inst_mod.F90  A patched version of a source file necessary to initialize the problem.  
 
 
  Untar the file homme1_3_26.tar.gz which will create a directory structure the root of which will be reffered to as $HOMMEDIR.  You will need to replace the existing file src/baroclinic_inst_mod.F90 with the patched version provided inorder to initialize the problem correctly.  
@@ -54,9 +54,11 @@ $HOMMEDIR is the installation path where the contents of homme1_3_26.tar.gz was 
 
    Once the executible has been built we recommend creating the following directory $BUILDDIR/tests/NGGPS. Copy the provide namelist files nggps_ne32.nl and nggps_ne256.nl into the $BUILDDIR/tests/NGGPS directory, and create any necessary runscripts in this directory as well.  You will also need to create a "movies" and "vcoord" subdirectory in the $BUILDDIR/tests/NGGPS directory.  In the vcoord directory you will need to copy the vertical coordinate files which can be created in the following manner:
     
+```
 cd $HOMMEDIR/test/vcoord
 make sigeqx
-execute sigeqx and enter 128, which is the number of vertical levels,  when prompted.  
+execute sigeqx and enter 128, which is the number of vertical levels, when prompted.  
+```
 
 Copy the two ascii files that are generated into the $BUILDDIR/tests/NGGPS/vcoord directory.  
 
@@ -103,6 +105,7 @@ Cores     Nodes  Elapsed time (seconds (2h, average)
  
 ## A full description of the dynamical core and configuration is provided below for reference.
 
+```
 Model: HOMME
 Numerical Method: Spectral element 
 precision: real*8
@@ -118,5 +121,4 @@ Simulation: J&W baroclinic instability
 10 tracers, initiated in a 0/1 checkboard pattern per AVEC report 
 hyperviscosity nu = 1e12
 "limiter8" - quasi-monotone limiter
-
-
+```
