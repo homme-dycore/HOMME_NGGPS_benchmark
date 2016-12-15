@@ -83,7 +83,7 @@ Date:   June 2015
 Version: 
 
 | Cores   | Nodes   | Elapsed time (seconds) (2h, average) |
-| ------- |:-------:| ------------------------------------:|
+| ------- |---------| -------------------------------------|
 |6144     | 256     | 66.54 |
 |12288    | 512     | 33.38 |
 |24576    | 1024    | 16.34 |
@@ -92,15 +92,13 @@ Version:
 |131072   | 5462    |  2.48 |
 
 
-```
 System:  Yellowstone 
 Date:    November 2016
 Version tag: dungeon12 
 
-Cores     Nodes  Elapsed time (seconds (2h, average)
-----------------------------------------------------
-1024      64     588.97
-```
+| Cores   |   Nodes  | Elapsed time (seconds (2h, average) |
+|---------|----------|-------------------------------------|
+| 1024    |  64      | 588.97 |
 
  
 ## A full description of the dynamical core and configuration is provided below for reference.
