@@ -97,9 +97,46 @@ Date:    November 2016
 
 Version tag: dungeon12 
 
-| Cores   |   Nodes  | Elapsed time (seconds (2h, average) |
+| HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
 |---------|----------|-------------------------------------|
 | 1024    |  64      | 588.97 |
+
+
+System: Cori 
+Date:  January 2017
+Version tag: dungeon16
+
+| HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
+|---------|----------|-------------------------------------|
+| 4096    |  64      | 158.92 |
+| 6144    |  96      | 103.53 |
+| 8192    |  128     |  77.25 |
+| 16384   |  256     |  41.13 |
+| 24576   |  384     |  28.06 |
+| 32768   |  512     |  23.64 |
+| 49152   |  768     |  14.60 |
+| 65536   |  1024    |  11.33 |
+| 98304   |  1536    |   7.87 |
+| 196608  |  3072    |   4.57 |
+| 393216  |  6144    |   2.87 |
+
+System: Cheyenne
+DateL January 2017
+Version tag: dungeon15
+
+| HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
+|-----------|----------|-------------------------------------|
+| 6144      |  171     | 96.72 |
+| 8192      |  228     | 83.32 |
+| 12288     |  342     | 55.90 |
+| 16384     |  456     | 41.37 |
+| 24576     |  683     | 26.89 |
+| 32768     |  911     | 19.22 |
+| 49152     |  1366    | 11.19 |
+| 65536     |  1821    |  7.75 |
+| 98304     |  2731    |  5.42 |
+
+
 
  
 ## A full description of the dynamical core and configuration is provided below for reference.
