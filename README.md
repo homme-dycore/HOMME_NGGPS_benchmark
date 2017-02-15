@@ -103,7 +103,9 @@ Version tag: dungeon12
 
 
 System: Cori 
+
 Date:  January 2017
+
 Version tag: dungeon16
 
 | HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
@@ -121,7 +123,9 @@ Version tag: dungeon16
 | 393216  |  6144    |   2.87 |
 
 System: Cheyenne
-DateL January 2017
+
+Date: January 2017
+
 Version tag: dungeon15
 
 | HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
