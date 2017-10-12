@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set up some useful defaults - bc's scale and line length:
+SCALE=80
+export BC_LINE_LENGTH=200
+
+# Get the minimum time of prim_main_loop for each
+ORIGINAL_MIN=$( grep prim_main_loop HommeTime_stats.original* | awk '{print $6}' | sort -g | head -1 )
+OPTIMIZED_MIN=$( grep prim_main_loop HommeTime_stats.optimized* | awk '{print $6}' | sort -g | head -1 )
+
+RATIO=$( echo "scale=${SCALE};  ${ORIGINAL_MIN} / ${OPTIMIZED_MIN} " | bc | cut -c -6 )
+
+printf "Improvement: %6sx \t Optimized: %8s \t Original: %8s \n" "${RATIO}" "${OPTIMIZED_MIN}" "${ORIGINAL_MIN}"

@@ -1,0 +1,24 @@
+###############################################################
+# RK + PIO_INTERP 
+###############################################################
+#
+# Spectral Element -- 9 days of ASP baroclinic test
+# (Jablonowski and Williamson test + 4 tracers)
+# NE=15, dt=150, nu=1e16, filter_freq=0, NV=4, PLEV=26
+# (explicit RK with subcycling)
+#
+###############################################################
+
+test_name=baro2d
+exec_name=preqx
+
+NP=4
+PLEV=26
+USE_PIO=0
+WITH_ENERGY=1
+
+NCPU=24
+
+nameListFiles=$HOMME_ROOT/test/reg_test/$namelist_dir/${test_name}.nl
+vcoordFiles="$HOMME_ROOT/test/vcoord/*26*"
+refSolnFiles=$HOMME_ROOT/test/reg_test/ref_sol/T340ref.nc

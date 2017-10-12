@@ -1,0 +1,105 @@
+#!/bin/tcsh
+#PBS -q debug
+#PBS -l walltime=0:5:00
+#PBS -l mppwidth=216
+#PBS -j oe
+#PBS -o out_DCMIP1-2_NE30_$PBS_JOBID
+#PBS -e err_DCMIP1-2_NE30_$PBS_JOBID
+
+#_______________________________________________________________________
+# set test parameters
+
+set HTHREADS  = 1              # number of horizontal threads
+set VTHREADS  = 1              # number of vertical threads (column_omp)
+set TEST_NAME = DCMIP1-2_NE30  # name of test for run directory
+set EXE       = preqx_L64
+
+cd $PBS_O_WORKDIR
+cd ../../..
+set HOMME_ROOT = `pwd`      # root directory of HOMME
+set EXE = ${HOMME_ROOT}/test_execs/${EXE}/${EXE}
+
+echo "PBS_O_WORKDIR = $PBS_O_WORKDIR"
+echo "HOMME_ROOT    = $HOMME_ROOT"
+echo "EXE           = $EXE"
+
+#_______________________________________________________________________
+# compute run parameters from number of procs and number of threads
+
+@ NUM_NODES     = $PBS_NP / 24                    # compute number of nodes from mppwidth
+@ NTHREADS      = $HTHREADS * $VTHREADS           # get total number of threads needed
+@ NCPU          = $NUM_NODES * 24 / $NTHREADS     # get total number of MPI procs
+@ NCPU_PER_NODE = 24 / $NTHREADS                  # get number of MPI procs per node
+@ NUM_NUMA      = $NCPU_PER_NODE / 2              # edison has 2 sockets per node
+
+setenv OMP_NUM_THREADS $NTHREADS
+
+echo "PBS_NP        = $PBS_NP"
+echo "NUM_NODES     = $NUM_NODES"
+echo "NTHREADS      = $NTHREADS"
+echo "NUM_CPU       = $NCPU"
+echo "NCPU_PER_NODE = $NCPU_PER_NODE"
+echo "NUM_NUMA      = $NUM_NUMA"
+
+#_______________________________________________________________________
+# check for some common errors
+
+set OMP_STATUS        = `cat $HOMME_ROOT/CMakeCache.txt | grep ENABLE_OPENMP        | grep TRUE`
+set COLUMN_OMP_STATUS = `cat $HOMME_ROOT/CMakeCache.txt | grep ENABLE_COLUMN_OPENMP | grep TRUE`
+
+if( $NTHREADS > 1 && ${%OMP_STATUS} == 0 ) then
+  echo "Error: NTHREADS > 1 requires ENABLE_OPENMP=TRUE"; exit
+endif
+
+if( $VTHREADS > 1 && ${%COLUMN_OMP_STATUS} == 0 ) then
+  echo "Error: VTHREADS > 1 requires ENABLE_COLUMN_OPENMP=TRUE"; exit
+endif
+
+#_______________________________________________________________________
+# build executable, if it is not already
+
+cd ${HOMME_ROOT}
+make -j6 ${EXE}
+if($status) exit
+
+#_______________________________________________________________________
+# create directories for simulation output
+
+cd $PBS_O_WORKDIR
+set RUN_DIR = ./RUN_${TEST_NAME}_$PBS_JOBID
+mkdir -p $RUN_DIR/movies
+echo "RUN_DIR: $RUN_DIR"
+
+cp VCOORD/*.ascii            $RUN_DIR
+cp SCRIPTS/*.ncl             $RUN_DIR
+cp NAMELISTS/${TEST_NAME}.nl $RUN_DIR
+
+#_______________________________________________________________________
+# launch the executable
+
+cd $RUN_DIR
+
+date
+set RUN_COMMAND = "aprun -n $NCPU -N $NCPU_PER_NODE -d $NTHREADS -S $NUM_NUMA"
+echo "${RUN_COMMAND} $EXE < NAMELISTS/${TEST_NAME}.nl"
+${RUN_COMMAND} $EXE < ${TEST_NAME}.nl
+if($status) exit
+
+# print timing info
+cat HommeTime_stats | grep walltotal
+echo "DCMIP1-2 `cat HommeTime_stats | grep prim_run`"
+echo
+
+# compute error norms
+ncl dcmip1-2_error_norms.ncl
+echo
+
+# plot some results
+ncl dcmip1-2_lat_height.ncl
+echo
+
+exit
+
+
+
+

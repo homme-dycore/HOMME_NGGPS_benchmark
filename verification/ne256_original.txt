@@ -1,0 +1,1188 @@
+Execute poe command line: poe  /glade/p/work/bdobbins/Projects/NERSC_Benchmark/yslarge1/cases/large/original.exe
+ number of MPI processes:         6144
+ (t_initf) Read in prof_inparm namelist from: input.nl
+ (t_initf) Using profile_disable= F  profile_timer=           2
+ (t_initf)  profile_depth_limit=       99999  profile_detail_limit=           1
+ (t_initf)  profile_barrier= F  profile_outpe_num=           0
+ (t_initf)  profile_outpe_stride=           1  profile_single_file= F
+ (t_initf)  profile_global_stats= T  profile_papi_enable= F
+ reading ctl namelist...
+ Reading namelist ctl_nl from standard input
+ reading filter namelist...
+ reading physics namelist...
+ reading vertical namelist...
+   vform =
+ ccm                                                                            
+                                                                                
+                                                                                
+    
+   vfile_mid=
+ vcoord/sabm-128.ascii                                                          
+                                                                                
+                                                                                
+    
+   vfile_int=
+ vcoord/sabi-128.ascii                                                          
+                                                                                
+                                                                                
+    
+ reading aquaplanet namelist...
+ reading analysis namelist...
+ Mesh File:none
+ Reference element projection: cubed_sphere_map=           0
+ done reading namelist...
+ readnl: accum         =            0           0           0
+ readnl: topology      = cube
+ readnl: test_case     = jw_baroclinic
+ readnl: omega         =   7.292000000000000E-005
+ readnl: sub_case      =            1
+ readnl: ndays         =            0
+ readnl: nmax          =          192
+ readnl: pertlim       =   0.000000000000000E+000
+ readnl: qsize,qsize_d =           10          10
+ readnl: ntrac,ntrac_d =            0           4
+ readnl: NThreads      =            1
+ readnl: vert_num_threads =            1
+ readnl: nthreads_accel =           -1
+ readnl: ne,np         =          256           4
+ readnl: partmethod    =            4
+ readnl: nmpi_per_node =           16
+ readnl: multilevel    =            1
+ readnl: useframes     =            0
+ readnl: nnodes        =          384
+ readnl: npart         =         6144
+ readnl: test_cfldep   =  F
+ 
+ readnl: integration   = explicit
+ readnl: LF-trapazoidal freq=            0
+ readnl: rk_stage_user   =            3
+ readnl: tracer_advection_formulation  =            1
+ readnl: use_semi_lagrange_transport   =  F
+ readnl: tstep_type    =            5
+ readnl: vert_remap_q_alg  =            1
+ readnl: tstep          =    40.0000000000000     
+ readnl: ftype          =            0
+ readnl: limiter_option =            8
+ filter: smooth         =   0.000000000000000E+000
+ readnl: qsplit        =            1
+ readnl: vertical remap frequency rsplit (0=disabled):            3
+ readnl: physics       =            0
+ readnl: energy_fixer  =           -1
+ readnl: runtype       =            0
+ Constant (hyper)viscosity used.
+ hypervis_subcycle, hypervis_subcycle_q =            3           1
+viscosity:  nu (vor/div) =  0.10E+13 0.10E+13
+viscosity:  nu_s      =  0.10E+13
+viscosity:  nu_q      =  0.10E+13
+viscosity:  nu_p      =  0.10E+13
+viscosity:  nu_top      =  0.10E+06
+ PHIS smoothing:             0  0.000000000000000E+000
+ SGH  smoothing:             0
+ cooling:  cool_ampl             =   0.000000000000000E+000
+ cooling:  cool_min              =   0.000000000000000E+000
+ cooling:  cool_max              =   0.000000000000000E+000
+ moisture: qv_flag               =            0
+ moisture: qv_pert_flag          =            0
+ moisture: qv_pert_ampl          =   0.000000000000000E+000
+ moisture: qv_pert_zmin          =   0.000000000000000E+000
+ moisture: qv_pert_zmax          =   0.000000000000000E+000
+ surface:  isrf_forc             =            0
+ surface:  h_dis                 =   0.000000000000000E+000
+ surface:  Cdrag                 =   0.000000000000000E+000
+ surface:  wstar                 =   0.000000000000000E+000
+ surface:  tsurf                 =   0.000000000000000E+000
+ surface:  qsurf                 =   0.000000000000000E+000
+ wind:     u0                    =   0.000000000000000E+000
+ absorber: zabsampl              =   0.000000000000000E+000
+ absorber: zabsmid               =   0.000000000000000E+000
+ absorber: zabsmin               =   0.000000000000000E+000
+ noise   : noisef  0 off,  >0 on =            0
+ noise   : noisef>0 indicate nr of first grid point 
+ noise   : to which noise function is applied       
+   analysis: output_prefix = 
+   analysis: io_stride =            8
+   analysis: num_io_procs =          768
+ Eulerian tracer advection on GLL grid
+  analysis interpolation =  T T T T T T T T
+  analysis interp nlat =           32
+  analysis interp nlon =           64
+  analysis interp gridtype =            2
+  analysis interpolation type =            0
+ REPRO_SUM_SETOPTS: Using fixed-point-based (scalable) reproducible 
+ distributed sum algorithm
+                     and not comparing with floating point algorithms.
+ Initialized repro_sum
+ 
+  total simulated time =    7680.00000000000     
+ 
+ 
+ ============================================
+         Testing Gaussian Quadrature...
+ 
+           points              weights
+ ============================================
+           1 -0.861136311594052575223946488892810      
+  0.347854845137453857373063949221999      
+           2 -0.339981043584856264802665759103245      
+  0.652145154862546142626936050778001      
+           3  0.339981043584856264802665759103245      
+  0.652145154862546142626936050778001      
+           4  0.861136311594052575223946488892810      
+  0.347854845137453857373063949221999      
+ ============================================
+ sum of Gaussian weights=   2.00000000000000     
+ ============================================
+ 
+ ============================================
+       Testing Gauss-Lobatto Quadrature...
+ 
+           points              weights
+ ============================================
+           1  -1.00000000000000000000000000000000      
+  0.166666666666666666666666666666667      
+           2 -0.447213595499957939281834733746255      
+  0.833333333333333333333333333333333      
+           3  0.447213595499957939281834733746255      
+  0.833333333333333333333333333333333      
+           4   1.00000000000000000000000000000000      
+  0.166666666666666666666666666666667      
+ ============================================
+ sum of Gauss-Lobatto weights=   2.00000000000000     
+ ============================================
+ creating cube topology...
+ ...done.
+ total number of elements nelem =       393216
+ partitioning graph using SF Curve...
+ init shared boundary_exchange buffers
+ initializing cube elements...
+ running mass_matrix
+ re-initializing cube elements: area correction= 1.00000000000000400
+ re-running mass_matrix
+ running global_dof
+ PrintStateDescriptor:
+component   1 length=12288 displacement=      0
+component   2 length= 6144 displacement=  98304
+component   3 length=   48 displacement= 147456
+component   4 length=   48 displacement= 147840
+component   5 length=   16 displacement= 148224
+component   6 length=20480 displacement= 148352
+component   7 length=40960 displacement= 312192
+component   8 length= 6144 displacement= 639872
+ Main:NThreads=           1
+ Main:n_domains =            1
+process:  4 thread:  0 element limits:     1 -    64
+process:  7 thread:  0 element limits:     1 -    64
+process:  5 thread:  0 element limits:     1 -    64
+process: 65 thread:  0 element limits:     1 -    64
+process:  3 thread:  0 element limits:     1 -    64
+process: 93 thread:  0 element limits:     1 -    64
+process: 14 thread:  0 element limits:     1 -    64
+process: 13 thread:  0 element limits:     1 -    64
+process: 44 thread:  0 element limits:     1 -    64
+process: 67 thread:  0 element limits:     1 -    64
+process: 71 thread:  0 element limits:     1 -    64
+process: 73 thread:  0 element limits:     1 -    64
+process:  6 thread:  0 element limits:     1 -    64
+process:  1 thread:  0 element limits:     1 -    64
+process: 78 thread:  0 element limits:     1 -    64
+process: 10 thread:  0 element limits:     1 -    64
+process: 92 thread:  0 element limits:     1 -    64
+process:  2 thread:  0 element limits:     1 -    64
+process: 41 thread:  0 element limits:     1 -    64
+process: 99 thread:  0 element limits:     1 -    64
+process: 77 thread:  0 element limits:     1 -    64
+process: 68 thread:  0 element limits:     1 -    64
+process: 43 thread:  0 element limits:     1 -    64
+process: 81 thread:  0 element limits:     1 -    64
+process: 47 thread:  0 element limits:     1 -    64
+process: 66 thread:  0 element limits:     1 -    64
+process: 70 thread:  0 element limits:     1 -    64
+process: 89 thread:  0 element limits:     1 -    64
+process: 39 thread:  0 element limits:     1 -    64
+process: 82 thread:  0 element limits:     1 -    64
+process: 40 thread:  0 element limits:     1 -    64
+process: 11 thread:  0 element limits:     1 -    64
+process: 15 thread:  0 element limits:     1 -    64
+process: 38 thread:  0 element limits:     1 -    64
+process: 94 thread:  0 element limits:     1 -    64
+process: 42 thread:  0 element limits:     1 -    64
+process: 74 thread:  0 element limits:     1 -    64
+process: 45 thread:  0 element limits:     1 -    64
+process: 76 thread:  0 element limits:     1 -    64
+process: 46 thread:  0 element limits:     1 -    64
+process: 64 thread:  0 element limits:     1 -    64
+process: 79 thread:  0 element limits:     1 -    64
+process: 37 thread:  0 element limits:     1 -    64
+process:  9 thread:  0 element limits:     1 -    64
+process: 69 thread:  0 element limits:     1 -    64
+process: 35 thread:  0 element limits:     1 -    64
+process: 80 thread:  0 element limits:     1 -    64
+process: 36 thread:  0 element limits:     1 -    64
+process: 12 thread:  0 element limits:     1 -    64
+process: 34 thread:  0 element limits:     1 -    64
+process: 33 thread:  0 element limits:     1 -    64
+process: 97 thread:  0 element limits:     1 -    64
+process: 75 thread:  0 element limits:     1 -    64
+process:  8 thread:  0 element limits:     1 -    64
+process: 98 thread:  0 element limits:     1 -    64
+process: 72 thread:  0 element limits:     1 -    64
+process: 32 thread:  0 element limits:     1 -    64
+process: 91 thread:  0 element limits:     1 -    64
+process: 48 thread:  0 element limits:     1 -    64
+process: 57 thread:  0 element limits:     1 -    64
+process: 96 thread:  0 element limits:     1 -    64
+process: 85 thread:  0 element limits:     1 -    64
+process: 90 thread:  0 element limits:     1 -    64
+process: 84 thread:  0 element limits:     1 -    64
+process: 86 thread:  0 element limits:     1 -    64
+process: 83 thread:  0 element limits:     1 -    64
+process: 87 thread:  0 element limits:     1 -    64
+process: 95 thread:  0 element limits:     1 -    64
+process: 88 thread:  0 element limits:     1 -    64
+ end of prim_init
+process:  0 thread:  0 element limits:     1 -    64
+process: 50 thread:  0 element limits:     1 -    64
+process: 54 thread:  0 element limits:     1 -    64
+process: 53 thread:  0 element limits:     1 -    64
+process: 56 thread:  0 element limits:     1 -    64
+process: 51 thread:  0 element limits:     1 -    64
+process: 52 thread:  0 element limits:     1 -    64
+process: 60 thread:  0 element limits:     1 -    64
+process: 58 thread:  0 element limits:     1 -    64
+process: 61 thread:  0 element limits:     1 -    64
+process: 49 thread:  0 element limits:     1 -    64
+process: 55 thread:  0 element limits:     1 -    64
+process: 62 thread:  0 element limits:     1 -    64
+process: 59 thread:  0 element limits:     1 -    64
+process: 63 thread:  0 element limits:     1 -    64
+process: 16 thread:  0 element limits:     1 -    64
+process: 30 thread:  0 element limits:     1 -    64
+process: 19 thread:  0 element limits:     1 -    64
+process: 29 thread:  0 element limits:     1 -    64
+process: 17 thread:  0 element limits:     1 -    64
+process: 25 thread:  0 element limits:     1 -    64
+process: 27 thread:  0 element limits:     1 -    64
+process: 21 thread:  0 element limits:     1 -    64
+process: 26 thread:  0 element limits:     1 -    64
+process: 22 thread:  0 element limits:     1 -    64
+process: 18 thread:  0 element limits:     1 -    64
+process: 23 thread:  0 element limits:     1 -    64
+process: 24 thread:  0 element limits:     1 -    64
+process: 20 thread:  0 element limits:     1 -    64
+process: 28 thread:  0 element limits:     1 -    64
+process: 31 thread:  0 element limits:     1 -    64
+1 Layer Locations (*1000) 
+   1    0.0000              0.0000              0.0000
+                  0.0000              3.9062              3.9062
+   2    0.0000              7.8125              7.8125
+                  0.0000             11.7188             11.7188
+   3    0.0000             15.6250             15.6250
+                  0.0000             19.5312             19.5312
+   4    0.0000             23.4375             23.4375
+                  0.0000             27.3438             27.3438
+   5    0.0000             31.2500             31.2500
+                  0.0000             35.1562             35.1562
+   6    0.0000             39.0625             39.0625
+                  0.0000             42.9688             42.9688
+   7    0.0000             46.8750             46.8750
+                  0.0000             50.7812             50.7812
+   8    0.0000             54.6875             54.6875
+                  0.0000             58.5938             58.5938
+   9    0.0000             62.5000             62.5000
+                  0.0000             66.4062             66.4062
+  10    0.0000             70.3125             70.3125
+                  0.0000             74.2188             74.2188
+  11    0.0000             78.1250             78.1250
+                  0.0000             82.0312             82.0312
+  12    0.0000             85.9375             85.9375
+                  0.0000             89.8438             89.8438
+  13    0.0000             93.7500             93.7500
+                  0.0000             97.6562             97.6562
+  14    0.0000            101.5625            101.5625
+                  0.0000            105.4688            105.4688
+  15    0.0000            109.3750            109.3750
+                  0.0000            113.2812            113.2812
+  16    0.0000            117.1875            117.1875
+                  0.0000            121.0938            121.0938
+  17    0.0000            125.0000            125.0000
+                  0.0000            128.9062            128.9062
+  18    0.0000            132.8125            132.8125
+                  0.0000            136.7188            136.7188
+  19    0.0000            140.6250            140.6250
+                  0.0000            144.5312            144.5312
+  20    0.0000            148.4375            148.4375
+                  0.0000            152.3438            152.3438
+  21    0.0000            156.2500            156.2500
+                  0.0000            160.1562            160.1562
+  22    0.0000            164.0625            164.0625
+                  0.0000            167.9688            167.9688
+  23    0.0000            171.8750            171.8750
+                  0.0000            175.7812            175.7812
+  24    0.0000            179.6875            179.6875
+                  0.0000            183.5938            183.5938
+  25    0.0000            187.5000            187.5000
+                  0.0000            191.4062            191.4062
+  26    0.0000            195.3125            195.3125
+                  0.0000            199.2188            199.2188
+  27    0.0000            203.1250            203.1250
+                  0.0000            207.0312            207.0312
+  28    0.0000            210.9375            210.9375
+                  0.0000            214.8438            214.8438
+  29    0.0000            218.7500            218.7500
+                  0.0000            222.6562            222.6562
+  30    0.0000            226.5625            226.5625
+                  0.0000            230.4688            230.4688
+  31    0.0000            234.3750            234.3750
+                  0.0000            238.2812            238.2812
+  32    0.0000            242.1875            242.1875
+                  0.0000            246.0938            246.0938
+  33    0.0000            250.0000            250.0000
+                  0.0000            253.9062            253.9062
+  34    0.0000            257.8125            257.8125
+                  0.0000            261.7188            261.7188
+  35    0.0000            265.6250            265.6250
+                  0.0000            269.5312            269.5312
+  36    0.0000            273.4375            273.4375
+                  0.0000            277.3438            277.3438
+  37    0.0000            281.2500            281.2500
+                  0.0000            285.1562            285.1562
+  38    0.0000            289.0625            289.0625
+                  0.0000            292.9688            292.9688
+  39    0.0000            296.8750            296.8750
+                  0.0000            300.7812            300.7812
+  40    0.0000            304.6875            304.6875
+                  0.0000            308.5938            308.5938
+  41    0.0000            312.5000            312.5000
+                  0.0000            316.4062            316.4062
+  42    0.0000            320.3125            320.3125
+                  0.0000            324.2188            324.2188
+  43    0.0000            328.1250            328.1250
+                  0.0000            332.0312            332.0312
+  44    0.0000            335.9375            335.9375
+                  0.0000            339.8438            339.8438
+  45    0.0000            343.7500            343.7500
+                  0.0000            347.6562            347.6562
+  46    0.0000            351.5625            351.5625
+                  0.0000            355.4688            355.4688
+  47    0.0000            359.3750            359.3750
+                  0.0000            363.2812            363.2812
+  48    0.0000            367.1875            367.1875
+                  0.0000            371.0938            371.0938
+  49    0.0000            375.0000            375.0000
+                  0.0000            378.9062            378.9062
+  50    0.0000            382.8125            382.8125
+                  0.0000            386.7188            386.7188
+  51    0.0000            390.6250            390.6250
+                  0.0000            394.5312            394.5312
+  52    0.0000            398.4375            398.4375
+                  0.0000            402.3438            402.3438
+  53    0.0000            406.2500            406.2500
+                  0.0000            410.1562            410.1562
+  54    0.0000            414.0625            414.0625
+                  0.0000            417.9688            417.9688
+  55    0.0000            421.8750            421.8750
+                  0.0000            425.7812            425.7812
+  56    0.0000            429.6875            429.6875
+                  0.0000            433.5938            433.5938
+  57    0.0000            437.5000            437.5000
+                  0.0000            441.4062            441.4062
+  58    0.0000            445.3125            445.3125
+                  0.0000            449.2188            449.2188
+  59    0.0000            453.1250            453.1250
+                  0.0000            457.0312            457.0312
+  60    0.0000            460.9375            460.9375
+                  0.0000            464.8438            464.8438
+  61    0.0000            468.7500            468.7500
+                  0.0000            472.6562            472.6562
+  62    0.0000            476.5625            476.5625
+                  0.0000            480.4688            480.4688
+  63    0.0000            484.3750            484.3750
+                  0.0000            488.2812            488.2812
+  64    0.0000            492.1875            492.1875
+                  0.0000            496.0938            496.0938
+  65    0.0000            500.0000            500.0000
+                  0.0000            503.9062            503.9062
+  66    0.0000            507.8125            507.8125
+                  0.0000            511.7188            511.7188
+  67    0.0000            515.6250            515.6250
+                  0.0000            519.5312            519.5312
+  68    0.0000            523.4375            523.4375
+                  0.0000            527.3438            527.3438
+  69    0.0000            531.2500            531.2500
+                  0.0000            535.1562            535.1562
+  70    0.0000            539.0625            539.0625
+                  0.0000            542.9688            542.9688
+  71    0.0000            546.8750            546.8750
+                  0.0000            550.7812            550.7812
+  72    0.0000            554.6875            554.6875
+                  0.0000            558.5938            558.5938
+  73    0.0000            562.5000            562.5000
+                  0.0000            566.4062            566.4062
+  74    0.0000            570.3125            570.3125
+                  0.0000            574.2188            574.2188
+  75    0.0000            578.1250            578.1250
+                  0.0000            582.0312            582.0312
+  76    0.0000            585.9375            585.9375
+                  0.0000            589.8438            589.8438
+  77    0.0000            593.7500            593.7500
+                  0.0000            597.6562            597.6562
+  78    0.0000            601.5625            601.5625
+                  0.0000            605.4688            605.4688
+  79    0.0000            609.3750            609.3750
+                  0.0000            613.2812            613.2812
+  80    0.0000            617.1875            617.1875
+                  0.0000            621.0938            621.0938
+  81    0.0000            625.0000            625.0000
+                  0.0000            628.9062            628.9062
+  82    0.0000            632.8125            632.8125
+                  0.0000            636.7188            636.7188
+  83    0.0000            640.6250            640.6250
+                  0.0000            644.5312            644.5312
+  84    0.0000            648.4375            648.4375
+                  0.0000            652.3438            652.3438
+  85    0.0000            656.2500            656.2500
+                  0.0000            660.1562            660.1562
+  86    0.0000            664.0625            664.0625
+                  0.0000            667.9688            667.9688
+  87    0.0000            671.8750            671.8750
+                  0.0000            675.7812            675.7812
+  88    0.0000            679.6875            679.6875
+                  0.0000            683.5938            683.5938
+  89    0.0000            687.5000            687.5000
+                  0.0000            691.4062            691.4062
+  90    0.0000            695.3125            695.3125
+                  0.0000            699.2188            699.2188
+  91    0.0000            703.1250            703.1250
+                  0.0000            707.0312            707.0312
+  92    0.0000            710.9375            710.9375
+                  0.0000            714.8438            714.8438
+  93    0.0000            718.7500            718.7500
+                  0.0000            722.6562            722.6562
+  94    0.0000            726.5625            726.5625
+                  0.0000            730.4688            730.4688
+  95    0.0000            734.3750            734.3750
+                  0.0000            738.2812            738.2812
+  96    0.0000            742.1875            742.1875
+                  0.0000            746.0938            746.0938
+  97    0.0000            750.0000            750.0000
+                  0.0000            753.9062            753.9062
+  98    0.0000            757.8125            757.8125
+                  0.0000            761.7188            761.7188
+  99    0.0000            765.6250            765.6250
+                  0.0000            769.5312            769.5312
+ 100    0.0000            773.4375            773.4375
+                  0.0000            777.3438            777.3438
+ 101    0.0000            781.2500            781.2500
+                  0.0000            785.1562            785.1562
+ 102    0.0000            789.0625            789.0625
+                  0.0000            792.9688            792.9688
+ 103    0.0000            796.8750            796.8750
+                  0.0000            800.7812            800.7812
+ 104    0.0000            804.6875            804.6875
+                  0.0000            808.5938            808.5938
+ 105    0.0000            812.5000            812.5000
+                  0.0000            816.4062            816.4062
+ 106    0.0000            820.3125            820.3125
+                  0.0000            824.2188            824.2188
+ 107    0.0000            828.1250            828.1250
+                  0.0000            832.0312            832.0312
+ 108    0.0000            835.9375            835.9375
+                  0.0000            839.8438            839.8438
+ 109    0.0000            843.7500            843.7500
+                  0.0000            847.6562            847.6562
+ 110    0.0000            851.5625            851.5625
+                  0.0000            855.4688            855.4688
+ 111    0.0000            859.3750            859.3750
+                  0.0000            863.2812            863.2812
+ 112    0.0000            867.1875            867.1875
+                  0.0000            871.0938            871.0938
+ 113    0.0000            875.0000            875.0000
+                  0.0000            878.9062            878.9062
+ 114    0.0000            882.8125            882.8125
+                  0.0000            886.7188            886.7188
+ 115    0.0000            890.6250            890.6250
+                  0.0000            894.5312            894.5312
+ 116    0.0000            898.4375            898.4375
+                  0.0000            902.3438            902.3438
+ 117    0.0000            906.2500            906.2500
+                  0.0000            910.1562            910.1562
+ 118    0.0000            914.0625            914.0625
+                  0.0000            917.9688            917.9688
+ 119    0.0000            921.8750            921.8750
+                  0.0000            925.7812            925.7812
+ 120    0.0000            929.6875            929.6875
+                  0.0000            933.5938            933.5938
+ 121    0.0000            937.5000            937.5000
+                  0.0000            941.4062            941.4062
+ 122    0.0000            945.3125            945.3125
+                  0.0000            949.2188            949.2188
+ 123    0.0000            953.1250            953.1250
+                  0.0000            957.0312            957.0312
+ 124    0.0000            960.9375            960.9375
+                  0.0000            964.8438            964.8438
+ 125    0.0000            968.7500            968.7500
+                  0.0000            972.6562            972.6562
+ 126    0.0000            976.5625            976.5625
+                  0.0000            980.4688            980.4688
+ 127    0.0000            984.3750            984.3750
+                  0.0000            988.2812            988.2812
+ 128    0.0000            992.1875            992.1875
+                  0.0000            996.0938            996.0938
+ 129    0.0000           1000.0000           1000.0000
+ Primitive Equation Initialization...
+ 
+ Running Global Integral Diagnostic...
+ Area of unit sphere is   1.00000000000000     
+ Should be 1.0 to round off...
+Element area:  max/min    1.410
+Average equatorial node spacing (deg, km) =  0.117   13.04
+norm of Dinv (min, max):   325.962  488.924
+Max Dinv-based element distortion:     1.73
+dx based on Dinv svd:          ave,min,max =    10.87    8.69   13.04
+dx based on sqrt element area: ave,min,max =    12.01   10.98   13.04
+  runtype: INITIAL primitive equations
+ initializing Jablonowski and Williamson baroclinic instability test V1
+ ...done
+CFL estimates in terms of S=time step stability region
+(i.e. advection w/leapfrog: S=1, viscosity w/forward Euler: S=2)
+SSP preservation (120m/s) RKSSP euler step dt  < S *     18.11s
+Stability: advective (120m/s)   dt_tracer < S *     39.66s
+Stability: gravity wave(342m/s)   dt_dyn  < S *     13.92s
+Stability: nu_q   hyperviscosity dt < S *     32.14s
+Stability: nu_vor hyperviscosity dt < S *     32.14s
+Stability: nu_div hyperviscosity dt < S *     32.14s
+TOP3 viscosity CFL: dt < S*     14.17s
+dt_remap: (0=disabled)      120.00
+dt_tracer, per RK stage:     40.00    20.00
+dt_dyn:                      40.00
+dt_dyn (viscosity):          13.33
+dt_tracer (viscosity):       40.00
+ initial state:
+ nstep=           0  time=  0.000000000000000E+000  [day]
+  u     =   0.506379776939673-259  0.355943377879000E+02  0.120512846460877E+11
+  v     =   0.000000000000000E+00  0.000000000000000E+00  0.000000000000000E+00
+  omega =   0.000000000000000E+00  0.000000000000000E+00  0.000000000000000E+00
+  t     =   0.209289349798768E+03  0.309825592979799E+03  0.206553865966863E+12
+  dp    =   0.000000000000000E+00  0.000000000000000E+00  0.000000000000000E+00
+      qv=   0.523223374496919E+00  0.774563982449499E+00  0.516384664917158E+09
+      qv=   0.000000000000000E+00  0.886646317861885E+00  0.125231744362733E+09
+      qv=   0.100000000000000E+01  0.100000000000000E+01  0.805306368000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      qv=   0.000000000000000E+00  0.100000000000000E+01  0.403046912000000E+09
+      ps=   0.100000000000000E+06  0.100000000000000E+06  0.629145600000000E+12
+      M =   0.101976716676049E+05 kg/m^2  0.100000000000000E+06 mb     
+ Directory 
+ ./movies/                                                                      
+                                                                                
+                                                                                
+     does exist: initialing IO
+Initializing   32 x   64 lat-lon interpolation grid: 
+ finished latitude            1  of           32
+ finished latitude           32  of           32
+Max interpolation point search error:   0.6684E-15
+Maximum number of interpolation points claimed by an element:      1
+ Number of interpolation points claimed by more than one element:            0
+ max number of elements which claimed the same interpolation point:           1
+ Entering main timestepping loop
+ nstep=          12  time=  5.555555555555555E-003  [day]
+  u     =  -0.829399553851648E-04  0.355534226608459E+02  0.120512813370875E+11
+  v     =  -0.617725185901685E-01  0.253368655744301E-01 -0.108154384890184E+06
+  omega =  -0.115358525848759E-05  0.116174293501124E-05 -0.750082626617478E-02
+  t     =   0.209289352243823E+03  0.309825593743435E+03  0.206553865686512E+12
+  dp    =   0.780770526806170E+03  0.781730590211333E+03  0.629145596963035E+12
+      qv=   0.523223374725536E+00  0.774563982450639E+00  0.516384663822148E+09
+      qv=  -0.235318770668561E-22  0.886646309708363E+00  0.125231972492390E+09
+      qv=   0.999998232823912E+00  0.100000176424895E+01  0.805306367573720E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      qv=  -0.437783301774199E-19  0.100000585457661E+01  0.402878651531675E+09
+      ps=   0.999388738585851E+05  0.100061286800463E+06  0.629145596963035E+12
+      M =   0.101976716717275E+05 kg/m^2  0.100000000040428E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16606078823043E+07 -0.58363235400369E-02
+IE,d/dt        0.26275696511926E+10  0.12479154268901E-01
+PE,d/dt        0.24624437953077E+00  0.87978771754958E-03
+ E,dE/dt       0.26292302593211E+10  0.75226187705994E-02
+Q1,Q diss, dQ^2/dt:  0.65362429039579E+04 kg/m^2  0.6391368E-08  0.4146568E-08
+Q2,Q diss, dQ^2/dt:  0.16124329172921E+04 kg/m^2  0.1911551E-08 -0.4532348E-07
+Q3,Q diss, dQ^2/dt:  0.10197671671728E+05 kg/m^2  0.9839929E-08  0.9839899E-08
+Q4,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Q5,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Q6,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Q7,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Q8,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Q9,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Q*,Q diss, dQ^2/dt:  0.51006513160662E+04 kg/m^2  0.2702046E-07 -0.3697425E-01
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383840E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.1172249E-02
+ nstep=          24  time=  1.111111111111111E-002  [day]
+  u     =  -0.551493979850726E-04  0.354478198901073E+02  0.120512728133135E+11
+  v     =  -0.170115490809271E+00  0.105002105191372E+00 -0.217642933820923E+06
+  omega =  -0.695413874056597E-06  0.739435090110112E-06 -0.117658121529691E-01
+  t     =   0.209289358265768E+03  0.309825594371419E+03  0.206553865055693E+12
+  dp    =   0.780427979866685E+03  0.782075535406140E+03  0.629145591830650E+12
+      qv=   0.523223374902857E+00  0.774563982447042E+00  0.516384661605748E+09
+      qv=  -0.287572894715303E-22  0.886646300951854E+00  0.125232087328850E+09
+      qv=   0.999996345118132E+00  0.100000373042151E+01  0.805306366982882E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      qv=  -0.253065218266319E-19  0.100001209047826E+01  0.402826073463533E+09
+      ps=   0.998957435348245E+05  0.100104767091092E+06  0.629145591830650E+12
+      M =   0.101976716763893E+05 kg/m^2  0.100000000086142E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16606039466731E+07 -0.94970846296443E-02
+IE,d/dt        0.26275696580102E+10  0.15148087342580E-01
+PE,d/dt        0.95853283348672E+00  0.18450377650560E-02
+ E,dE/dt       0.26292302629154E+10  0.74960390726725E-02
+Q1,Q diss, dQ^2/dt:  0.65362429069755E+04 kg/m^2  0.6311689E-08  0.4114501E-08
+Q2,Q diss, dQ^2/dt:  0.16124329181861E+04 kg/m^2  0.1835773E-08 -0.3344460E-07
+Q3,Q diss, dQ^2/dt:  0.10197671676389E+05 kg/m^2  0.9690287E-08  0.9690272E-08
+Q4,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Q5,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Q6,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Q7,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Q8,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Q9,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Q*,Q diss, dQ^2/dt:  0.51006513185020E+04 kg/m^2  0.4845159E-08 -0.1702052E-01
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383838E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.6142736E-02
+ nstep=          36  time=  1.666666666666667E-002  [day]
+  u     =  -0.271766518296548E-04  0.353194448093965E+02  0.120512590074165E+11
+  v     =  -0.282302549529825E+00  0.196266029338714E+00 -0.327575037453574E+06
+  omega =  -0.111801896414612E-05  0.110542187102722E-05 -0.110394812458238E-01
+  t     =   0.209289362832990E+03  0.309825595033109E+03  0.206553863980517E+12
+  dp    =   0.780288198903680E+03  0.782216513089818E+03  0.629145584603285E+12
+      qv=   0.523223375116049E+00  0.774563982436484E+00  0.516384659242238E+09
+      qv=  -0.164918708885248E-21  0.886646294633834E+00  0.125232158095214E+09
+      qv=   0.999993899655224E+00  0.100000615881112E+01  0.805306366847983E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      qv=  -0.224529591178645E-19  0.100001768324989E+01  0.402804553297021E+09
+      ps=   0.998785375580391E+05  0.100122153123447E+06  0.629145584603285E+12
+      M =   0.101976716810719E+05 kg/m^2  0.100000000132060E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605985354312E+07 -0.12252859967217E-01
+IE,d/dt        0.26275696658584E+10  0.17000277837118E-01
+PE,d/dt        0.21299935833903E+01  0.27952970673600E-02
+ E,dE/dt       0.26292302665239E+10  0.75427134831746E-02
+Q1,Q diss, dQ^2/dt:  0.65362429100676E+04 kg/m^2  0.6489305E-08  0.4305411E-08
+Q2,Q diss, dQ^2/dt:  0.16124329190522E+04 kg/m^2  0.1815448E-08 -0.2798039E-07
+Q3,Q diss, dQ^2/dt:  0.10197671681072E+05 kg/m^2  0.9786299E-08  0.9786284E-08
+Q4,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Q5,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Q6,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Q7,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Q8,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Q9,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Q*,Q diss, dQ^2/dt:  0.51006513208386E+04 kg/m^2  0.4877582E-08 -0.1096442E-01
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383833E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.1495465E-01
+ nstep=          48  time=  2.222222222222222E-002  [day]
+  u     =  -0.240225661142424E-04  0.352769447278487E+02  0.120512401104717E+11
+  v     =  -0.358176185121303E+00  0.260615391070628E+00 -0.436980716582394E+06
+  omega =  -0.151987810004834E-05  0.150109651807171E-05 -0.122900816291163E-01
+  t     =   0.209289367789067E+03  0.309825595604529E+03  0.206553862624507E+12
+  dp    =   0.780315526490611E+03  0.782188631912071E+03  0.629145576570536E+12
+      qv=   0.523223375362846E+00  0.774563982420231E+00  0.516384656270634E+09
+      qv=  -0.167809532672587E-21  0.886646291772432E+00  0.125232201870082E+09
+      qv=   0.999992132589099E+00  0.100000786676300E+01  0.805306366812500E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      qv=  -0.224531308216312E-19  0.100002346162840E+01  0.402797000665554E+09
+      ps=   0.998823048745189E+05  0.100118432950480E+06  0.629145576570536E+12
+      M =   0.101976716857981E+05 kg/m^2  0.100000000178405E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605919260895E+07 -0.14680429524742E-01
+IE,d/dt        0.26275696744854E+10  0.18550419807434E-01
+PE,d/dt        0.37508795044417E+01  0.37223764879999E-02
+ E,dE/dt       0.26292302701623E+10  0.75923601786296E-02
+Q1,Q diss, dQ^2/dt:  0.65362429131796E+04 kg/m^2  0.6482075E-08  0.4258194E-08
+Q2,Q diss, dQ^2/dt:  0.16124329199383E+04 kg/m^2  0.1856140E-08 -0.2486718E-07
+Q3,Q diss, dQ^2/dt:  0.10197671685798E+05 kg/m^2  0.9864789E-08  0.9864774E-08
+Q4,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Q5,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Q6,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Q7,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Q8,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Q9,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Q*,Q diss, dQ^2/dt:  0.51006513231899E+04 kg/m^2  0.4903094E-08 -0.8206538E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383828E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.2753495E-01
+ nstep=          60  time=  2.777777777777778E-002  [day]
+  u     =  -0.271153443695807E-04  0.352699406806219E+02  0.120512164276604E+11
+  v     =  -0.392781553469692E+00  0.287549285023424E+00 -0.544910708490677E+06
+  omega =  -0.149923880287860E-05  0.146851960572646E-05 -0.883104698841594E-02
+  t     =   0.209289372355415E+03  0.309825596187394E+03  0.206553861111510E+12
+  dp    =   0.780412206487942E+03  0.782092300617187E+03  0.629145568810177E+12
+      qv=   0.523223375599266E+00  0.774563982401926E+00  0.516384652531051E+09
+      qv=  -0.178724668608127E-21  0.886646290737775E+00  0.125232234281939E+09
+      qv=   0.999991332044639E+00  0.100000869944269E+01  0.805306366817101E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      qv=  -0.177635680118257E-19  0.100002869538338E+01  0.402794420715007E+09
+      ps=   0.998944402773577E+05  0.100106432143731E+06  0.629145568810177E+12
+      M =   0.101976716905330E+05 kg/m^2  0.100000000224837E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605841092767E+07 -0.17280880536418E-01
+IE,d/dt        0.26275696838878E+10  0.20256451765696E-01
+PE,d/dt        0.58078311590314E+01  0.46189001872774E-02
+ E,dE/dt       0.26292302738049E+10  0.75944741566976E-02
+Q1,Q diss, dQ^2/dt:  0.65362429162939E+04 kg/m^2  0.6494391E-08  0.4271108E-08
+Q2,Q diss, dQ^2/dt:  0.16124329208261E+04 kg/m^2  0.1849154E-08 -0.2281251E-07
+Q3,Q diss, dQ^2/dt:  0.10197671690533E+05 kg/m^2  0.9869412E-08  0.9869382E-08
+Q4,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Q5,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Q6,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Q7,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Q8,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Q9,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Q*,Q diss, dQ^2/dt:  0.51006513255405E+04 kg/m^2  0.4896712E-08 -0.6664980E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383822E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.4377969E-01
+ nstep=          72  time=  3.333333333333333E-002  [day]
+  u     =  -0.301206421788304E-04  0.352643156135018E+02  0.120511883003089E+11
+  v     =  -0.401036728512728E+00  0.289250311873782E+00 -0.650527560299846E+06
+  omega =  -0.149196276215492E-05  0.145060219074261E-05 -0.639796827558015E-03
+  t     =   0.209289376959333E+03  0.309825596754756E+03  0.206553859587208E+12
+  dp    =   0.780505844874516E+03  0.782000685473648E+03  0.629145562697921E+12
+      qv=   0.523223375837303E+00  0.774563982381939E+00  0.516384647978391E+09
+      qv=  -0.131219301321618E-21  0.886646290174748E+00  0.125232263564328E+09
+      qv=   0.999991273133649E+00  0.100000878397065E+01  0.805306366819459E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      qv=  -0.253993846110393E-19  0.100003338954432E+01  0.402793676233843E+09
+      ps=   0.999060142707671E+05  0.100095130761024E+06  0.629145562697921E+12
+      M =   0.101976716952806E+05 kg/m^2  0.100000000271393E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605749774500E+07 -0.20085098080259E-01
+IE,d/dt        0.26275696941945E+10  0.22215926647186E-01
+PE,d/dt        0.82842081842194E+01  0.54781618842767E-02
+ E,dE/dt       0.26292302774562E+10  0.76089898745219E-02
+Q1,Q diss, dQ^2/dt:  0.65362429194193E+04 kg/m^2  0.6513460E-08  0.4283781E-08
+Q2,Q diss, dQ^2/dt:  0.16124329217143E+04 kg/m^2  0.1849520E-08 -0.2131251E-07
+Q3,Q diss, dQ^2/dt:  0.10197671695280E+05 kg/m^2  0.9894772E-08  0.9894726E-08
+Q4,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Q5,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Q6,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Q7,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Q8,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Q9,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Q*,Q diss, dQ^2/dt:  0.51006513278948E+04 kg/m^2  0.4905966E-08 -0.5649936E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383814E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.6355691E-01
+ nstep=          84  time=  3.888888888888889E-002  [day]
+  u     =  -0.332381017983730E-04  0.352552102938620E+02  0.120511560901644E+11
+  v     =  -0.398040974166072E+00  0.280930333076643E+00 -0.753167906161889E+06
+  omega =  -0.155832702450219E-05  0.150578974201993E-05  0.956536270002190E-02
+  t     =   0.209289381682034E+03  0.309825597316900E+03  0.206553858166983E+12
+  dp    =   0.780580268411922E+03  0.781928833626872E+03  0.629145559357031E+12
+      qv=   0.523223376080313E+00  0.774563982360959E+00  0.516384642682082E+09
+      qv=  -0.132412900620018E-21  0.886646289465616E+00  0.125232293434399E+09
+      qv=   0.999991523889427E+00  0.100000867944741E+01  0.805306366825641E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      qv=  -0.177635676991419E-19  0.100003833734978E+01  0.402793521388526E+09
+      ps=   0.999152182814669E+05  0.100086206841621E+06  0.629145559357031E+12
+      M =   0.101976717000330E+05 kg/m^2  0.100000000317996E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605644899364E+07 -0.22896101007548E-01
+IE,d/dt        0.26275697054604E+10  0.24217998981476E-01
+PE,d/dt        0.11160137096232E+02  0.62936893433004E-02
+ E,dE/dt       0.26292302811105E+10  0.76155861218770E-02
+Q1,Q diss, dQ^2/dt:  0.65362429225468E+04 kg/m^2  0.6518174E-08  0.4283387E-08
+Q2,Q diss, dQ^2/dt:  0.16124329226019E+04 kg/m^2  0.1848722E-08 -0.2015104E-07
+Q3,Q diss, dQ^2/dt:  0.10197671700033E+05 kg/m^2  0.9904428E-08  0.9904367E-08
+Q4,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Q5,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Q6,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Q7,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Q8,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Q9,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Q*,Q diss, dQ^2/dt:  0.51006513302507E+04 kg/m^2  0.4910271E-08 -0.4924817E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383806E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.8670745E-01
+ nstep=          96  time=  4.444444444444444E-002  [day]
+  u     =  -0.361151711889025E-04  0.352430972030673E+02  0.120511201513400E+11
+  v     =  -0.393206487240608E+00  0.271506305268701E+00 -0.852360157950437E+06
+  omega =  -0.164025530567649E-05  0.157945727324709E-05  0.219322313993318E-01
+  t     =   0.209289386570347E+03  0.309825597874850E+03  0.206553856944903E+12
+  dp    =   0.780639112394182E+03  0.781872211087202E+03  0.629145559602619E+12
+      qv=   0.523223376334654E+00  0.774563982338752E+00  0.516384636663889E+09
+      qv=  -0.137751187320889E-21  0.886646288844320E+00  0.125232325352107E+09
+      qv=   0.999991746401173E+00  0.100000850532159E+01  0.805306366830840E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      qv=  -0.177635704296650E-19  0.100004323413506E+01  0.402793413106191E+09
+      ps=   0.999225381088135E+05  0.100079124593290E+06  0.629145559602619E+12
+      M =   0.101976717047906E+05 kg/m^2  0.100000000364649E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605526933981E+07 -0.25560361416622E-01
+IE,d/dt        0.26275697176621E+10  0.26124159495036E-01
+PE,d/dt        0.14412829677037E+02  0.70595350883820E-02
+ E,dE/dt       0.26292302847683E+10  0.76233347256978E-02
+Q1,Q diss, dQ^2/dt:  0.65362429256780E+04 kg/m^2  0.6526200E-08  0.4286411E-08
+Q2,Q diss, dQ^2/dt:  0.16124329234891E+04 kg/m^2  0.1848169E-08 -0.1921966E-07
+Q3,Q diss, dQ^2/dt:  0.10197671704790E+05 kg/m^2  0.9915811E-08  0.9915766E-08
+Q4,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Q5,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Q6,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Q7,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Q8,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Q9,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Q*,Q diss, dQ^2/dt:  0.51006513326101E+04 kg/m^2  0.4918904E-08 -0.4369275E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383796E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.1130474E+00
+ nstep=         108  time=  5.000000000000000E-002  [day]
+  u     =  -0.392059361842388E-04  0.352295280545762E+02  0.120510808154147E+11
+  v     =  -0.389864274883349E+00  0.263658437500454E+00 -0.947798996216045E+06
+  omega =  -0.171999162560274E-05  0.164754563612656E-05  0.347050704494327E-01
+  t     =   0.209289391414375E+03  0.309825598440374E+03  0.206553855974226E+12
+  dp    =   0.780686787236364E+03  0.781826734351920E+03  0.629145563874275E+12
+      qv=   0.523223376586590E+00  0.774563982315719E+00  0.516384629975403E+09
+      qv=  -0.119317028541209E-21  0.886646288365006E+00  0.125232360018655E+09
+      qv=   0.999991859591615E+00  0.100000836099976E+01  0.805306366835751E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      qv=  -0.125591928431971E-19  0.100004705912753E+01  0.402793302997428E+09
+      ps=   0.999284954705048E+05  0.100073364928356E+06  0.629145563874275E+12
+      M =   0.101976717095530E+05 kg/m^2  0.100000000411350E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605396790728E+07 -0.28017533863507E-01
+IE,d/dt        0.26275697307335E+10  0.27876945336660E-01
+PE,d/dt        0.18016803285590E+02  0.77703297297171E-02
+ E,dE/dt       0.26292302884294E+10  0.76297402381897E-02
+Q1,Q diss, dQ^2/dt:  0.65362429288125E+04 kg/m^2  0.6532521E-08  0.4288048E-08
+Q2,Q diss, dQ^2/dt:  0.16124329243758E+04 kg/m^2  0.1847057E-08 -0.1845435E-07
+Q3,Q diss, dQ^2/dt:  0.10197671709553E+05 kg/m^2  0.9924967E-08  0.9924952E-08
+Q4,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Q5,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Q6,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Q7,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Q8,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Q9,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Q*,Q diss, dQ^2/dt:  0.51006513349744E+04 kg/m^2  0.4930030E-08 -0.3937471E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383786E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.1423697E+00
+ nstep=         120  time=  5.555555555555555E-002  [day]
+  u     =  -0.420403715945285E-04  0.352171801678745E+02  0.120510383774060E+11
+  v     =  -0.388426613399339E+00  0.257917571093755E+00 -0.103929393667023E+07
+  omega =  -0.179278833514864E-05  0.171201687180776E-05  0.470367023965647E-01
+  t     =   0.209289396306139E+03  0.309825599009693E+03  0.206553855272250E+12
+  dp    =   0.780726335007882E+03  0.781788971381180E+03  0.629145572273846E+12
+      qv=   0.523223376840803E+00  0.774563982291971E+00  0.516384622681296E+09
+      qv=  -0.118085637548694E-21  0.886646287979486E+00  0.125232398008148E+09
+      qv=   0.999991926692319E+00  0.100000820329375E+01  0.805306366839871E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      qv=  -0.177635672697330E-19  0.100005212759523E+01  0.402793150861490E+09
+      ps=   0.999334625269196E+05  0.100068577318372E+06  0.629145572273846E+12
+      M =   0.101976717143202E+05 kg/m^2  0.100000000458099E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605255518885E+07 -0.30251798836980E-01
+IE,d/dt        0.26275697445979E+10  0.29467777411143E-01
+PE,d/dt        0.21944176171201E+02  0.84212936646621E-02
+ E,dE/dt       0.26292302920939E+10  0.76372702916463E-02
+Q1,Q diss, dQ^2/dt:  0.65362429319503E+04 kg/m^2  0.6539691E-08  0.4290102E-08
+Q2,Q diss, dQ^2/dt:  0.16124329252624E+04 kg/m^2  0.1847216E-08 -0.1782293E-07
+Q3,Q diss, dQ^2/dt:  0.10197671714320E+05 kg/m^2  0.9935866E-08  0.9935820E-08
+Q4,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Q5,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Q6,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Q7,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Q8,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Q9,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Q*,Q diss, dQ^2/dt:  0.51006513373458E+04 kg/m^2  0.4947333E-08 -0.3589736E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383774E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.1744468E+00
+ nstep=         132  time=  6.111111111111111E-002  [day]
+  u     =  -0.449917505333988E-04  0.352054683163581E+02  0.120509930821962E+11
+  v     =  -0.388439674365813E+00  0.253604941842214E+00 -0.112671081443924E+07
+  omega =  -0.185589784585365E-05  0.176598768088853E-05  0.580280151508466E-01
+  t     =   0.209289401245129E+03  0.309825599585266E+03  0.206553854824233E+12
+  dp    =   0.780759854893714E+03  0.781757050324388E+03  0.629145584589096E+12
+      qv=   0.523223377098876E+00  0.774563982267685E+00  0.516384614844884E+09
+      qv=  -0.106764175144212E-21  0.886646287655701E+00  0.125232439004765E+09
+      qv=   0.999992012937603E+00  0.100000803562226E+01  0.805306366843486E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      qv=  -0.998298346613242E-20  0.100005737330166E+01  0.402792945517707E+09
+      ps=   0.999376811393960E+05  0.100064530150057E+06  0.629145584589096E+12
+      M =   0.101976717190925E+05 kg/m^2  0.100000000504896E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16605104208414E+07 -0.32256678404519E-01
+IE,d/dt        0.26275697591761E+10  0.30892439683278E-01
+PE,d/dt        0.26164970763832E+02  0.90083162262717E-02
+ E,dE/dt       0.26292302957619E+10  0.76440771420797E-02
+Q1,Q diss, dQ^2/dt:  0.65362429350913E+04 kg/m^2  0.6546179E-08  0.4291799E-08
+Q2,Q diss, dQ^2/dt:  0.16124329261493E+04 kg/m^2  0.1847792E-08 -0.1728340E-07
+Q3,Q diss, dQ^2/dt:  0.10197671719092E+05 kg/m^2  0.9945673E-08  0.9945628E-08
+Q4,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Q5,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Q6,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Q7,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Q8,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Q9,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Q*,Q diss, dQ^2/dt:  0.51006513397272E+04 kg/m^2  0.4970252E-08 -0.3304645E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383762E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.2090331E+00
+ nstep=         144  time=  6.666666666666667E-002  [day]
+  u     =  -0.480070700509699E-04  0.351944546975935E+02  0.120509451105309E+11
+  v     =  -0.389201245110813E+00  0.250229383155197E+00 -0.120991976182072E+07
+  omega =  -0.190875199134643E-05  0.180789672938231E-05  0.668576435102626E-01
+  t     =   0.209289406212931E+03  0.309825600167861E+03  0.206553854585179E+12
+  dp    =   0.780788681239691E+03  0.781729679318559E+03  0.629145600319862E+12
+      qv=   0.523223377357592E+00  0.774563982242796E+00  0.516384606534491E+09
+      qv=  -0.102645702157447E-21  0.886646287356611E+00  0.125232482594764E+09
+      qv=   0.999992112061124E+00  0.100000783791112E+01  0.805306366847104E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      qv=  -0.963550312977263E-20  0.100006236083755E+01  0.402792788942046E+09
+      ps=   0.999413224881262E+05  0.100061059303988E+06  0.629145600319862E+12
+      M =   0.101976717238688E+05 kg/m^2  0.100000000551733E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16604943979669E+07 -0.34025668329559E-01
+IE,d/dt        0.26275697743873E+10  0.32147089640299E-01
+PE,d/dt        0.30647441408234E+02  0.95279722644776E-02
+ E,dE/dt       0.26292302994327E+10  0.76493938763936E-02
+Q1,Q diss, dQ^2/dt:  0.65362429382351E+04 kg/m^2  0.6551265E-08  0.4292504E-08
+Q2,Q diss, dQ^2/dt:  0.16124329270365E+04 kg/m^2  0.1848713E-08 -0.1680318E-07
+Q3,Q diss, dQ^2/dt:  0.10197671723869E+05 kg/m^2  0.9953328E-08  0.9953283E-08
+Q4,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Q5,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Q6,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Q7,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Q8,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Q9,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Q*,Q diss, dQ^2/dt:  0.51006513421207E+04 kg/m^2  0.4996529E-08 -0.3067581E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383749E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.2458674E+00
+ nstep=         156  time=  7.222222222222222E-002  [day]
+  u     =  -0.509396310820536E-04  0.351842115741616E+02  0.120508945721617E+11
+  v     =  -0.390195162173188E+00  0.247361705908713E+00 -0.128875781558347E+07
+  omega =  -0.194963823089930E-05  0.184042643426600E-05  0.727266262310636E-01
+  t     =   0.209289411191978E+03  0.309825600758122E+03  0.206553854481109E+12
+  dp    =   0.780813799607014E+03  0.781705931324214E+03  0.629145618692820E+12
+      qv=   0.523223377616375E+00  0.774563982217691E+00  0.516384597823100E+09
+      qv=  -0.100998947420631E-21  0.886646287009749E+00  0.125232528088236E+09
+      qv=   0.999992195601143E+00  0.100000769035382E+01  0.805306366849592E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      qv=  -0.127079229814446E-19  0.100006755887128E+01  0.402792691435458E+09
+      ps=   0.999444972826090E+05  0.100058055086372E+06  0.629145618692820E+12
+      M =   0.101976717286480E+05 kg/m^2  0.100000000598599E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16604775984628E+07 -0.35552275596031E-01
+IE,d/dt        0.26275697901486E+10  0.33227328459422E-01
+PE,d/dt        0.35358413231657E+02  0.99775571907672E-02
+ E,dE/dt       0.26292303031055E+10  0.76526045799255E-02
+Q1,Q diss, dQ^2/dt:  0.65362429413807E+04 kg/m^2  0.6554334E-08  0.4291746E-08
+Q2,Q diss, dQ^2/dt:  0.16124329279242E+04 kg/m^2  0.1849861E-08 -0.1638455E-07
+Q3,Q diss, dQ^2/dt:  0.10197671728648E+05 kg/m^2  0.9958042E-08  0.9957997E-08
+Q4,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Q5,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Q6,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Q7,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Q8,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Q9,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Q*,Q diss, dQ^2/dt:  0.51006513445267E+04 kg/m^2  0.5021654E-08 -0.2864625E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383735E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189641E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.2846759E+00
+ nstep=         168  time=  7.777777777777778E-002  [day]
+  u     =  -0.538714615608025E-04  0.351749593786756E+02  0.120508415157525E+11
+  v     =  -0.391208434185334E+00  0.244729447773764E+00 -0.136301105962334E+07
+  omega =  -0.197745922677381E-05  0.186285404933750E-05  0.750642617868163E-01
+  t     =   0.209289416153347E+03  0.309825601354601E+03  0.206553854414026E+12
+  dp    =   0.780835906836582E+03  0.781685204574714E+03  0.629145638704093E+12
+      qv=   0.523223377874574E+00  0.774563982192276E+00  0.516384588786702E+09
+      qv=  -0.107024705431579E-21  0.886646286539327E+00  0.125232574466685E+09
+      qv=   0.999992217073512E+00  0.100000764851056E+01  0.805306366851262E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      qv=  -0.971553187772217E-20  0.100007268901272E+01  0.402792572706441E+09
+      ps=   0.999472918855381E+05  0.100055428815468E+06  0.629145638704093E+12
+      M =   0.101976717334285E+05 kg/m^2  0.100000000645477E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16604601403524E+07 -0.36831085513889E-01
+IE,d/dt        0.26275698063752E+10  0.34129794438680E-01
+PE,d/dt        0.40263634301096E+02  0.10355104087167E-01
+ E,dE/dt       0.26292303067792E+10  0.76538125673930E-02
+Q1,Q diss, dQ^2/dt:  0.65362429445272E+04 kg/m^2  0.6555532E-08  0.4289730E-08
+Q2,Q diss, dQ^2/dt:  0.16124329288125E+04 kg/m^2  0.1851062E-08 -0.1602503E-07
+Q3,Q diss, dQ^2/dt:  0.10197671733428E+05 kg/m^2  0.9959861E-08  0.9959816E-08
+Q4,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Q5,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Q6,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Q7,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Q8,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Q9,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Q*,Q diss, dQ^2/dt:  0.51006513469433E+04 kg/m^2  0.5041147E-08 -0.2689323E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383720E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189642E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.3251752E+00
+ nstep=         180  time=  8.333333333333333E-002  [day]
+  u     =  -0.568533772234527E-04  0.351665401605820E+02  0.120507859605652E+11
+  v     =  -0.391906000075818E+00  0.250186028031228E+00 -0.143241815878615E+07
+  omega =  -0.199192869206085E-05  0.187304803522219E-05  0.736710476230248E-01
+  t     =   0.209289420940476E+03  0.309825602034074E+03  0.206553854272606E+12
+  dp    =   0.780855530122640E+03  0.781666961539892E+03  0.629145659211277E+12
+      qv=   0.523223378130256E+00  0.774563982166641E+00  0.516384579502209E+09
+      qv=  -0.103830207184974E-21  0.886646285927232E+00  0.125232621226263E+09
+      qv=   0.999992142882494E+00  0.100000771117951E+01  0.805306366852623E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      qv=  -0.888175235626395E-20  0.100007779375821E+01  0.402792513567213E+09
+      ps=   0.999497704718392E+05  0.100053124440416E+06  0.629145659211277E+12
+      M =   0.101976717382094E+05 kg/m^2  0.100000000692359E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16604421437614E+07 -0.37858394453845E-01
+IE,d/dt        0.26275698229812E+10  0.34853065013885E-01
+PE,d/dt        0.45328130528659E+02  0.10659385969230E-01
+ E,dE/dt       0.26292303104531E+10  0.76540629069010E-02
+Q1,Q diss, dQ^2/dt:  0.65362429476740E+04 kg/m^2  0.6555842E-08  0.4287153E-08
+Q2,Q diss, dQ^2/dt:  0.16124329297014E+04 kg/m^2  0.1852230E-08 -0.1569737E-07
+Q3,Q diss, dQ^2/dt:  0.10197671738209E+05 kg/m^2  0.9960316E-08  0.9960271E-08
+Q4,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Q5,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Q6,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Q7,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Q8,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Q9,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Q*,Q diss, dQ^2/dt:  0.51006513493665E+04 kg/m^2  0.5051667E-08 -0.2537237E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383706E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189642E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.3670750E+00
+ nstep=         192  time=  8.888888888888888E-002  [day]
+  u     =  -0.602562043579572E-04  0.351589339614721E+02  0.120507279433294E+11
+  v     =  -0.392127722652169E+00  0.276619105833083E+00 -0.149669174293324E+07
+  omega =  -0.199833328887681E-05  0.187161445801327E-05  0.688099883885480E-01
+  t     =   0.209289424907251E+03  0.309825603111235E+03  0.206553853947653E+12
+  dp    =   0.780873042382452E+03  0.781650845992312E+03  0.629145679066207E+12
+      qv=   0.523223378371709E+00  0.774563982140838E+00  0.516384570045506E+09
+      qv=  -0.797573344275867E-22  0.886646285247446E+00  0.125232667800911E+09
+      qv=   0.999991984469552E+00  0.100000786013777E+01  0.805306366853843E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      qv=  -0.768429593525480E-20  0.100008246930993E+01  0.402792441383708E+09
+      ps=   0.999519804942835E+05  0.100051090801984E+06  0.629145679066207E+12
+      M =   0.101976717429906E+05 kg/m^2  0.100000000739245E+06 mb     
+**DYNAMICS**        J/m^2                    W/m^2                W/m^2    
+KE,d/dt        0.16604237299860E+07 -0.38632555688188E-01
+IE,d/dt        0.26275698398806E+10  0.35397322972616E-01
+PE,d/dt        0.50516559800705E+02  0.10889910878631E-01
+ E,dE/dt       0.26292303141272E+10  0.76546748479207E-02
+Q1,Q diss, dQ^2/dt:  0.65362429508209E+04 kg/m^2  0.6556540E-08  0.4284910E-08
+Q2,Q diss, dQ^2/dt:  0.16124329305907E+04 kg/m^2  0.1853291E-08 -0.1540609E-07
+Q3,Q diss, dQ^2/dt:  0.10197671742990E+05 kg/m^2  0.9961347E-08  0.9961317E-08
+Q4,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Q5,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Q6,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Q7,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Q8,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Q9,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Q*,Q diss, dQ^2/dt:  0.51006513517916E+04 kg/m^2  0.5050917E-08 -0.2402607E-02
+Energy Fixer, Physics (except adjustments):
+dKE/dt(W/m^2):   0.0000000E+00  0.1383690E+05
+dIE/dt(W/m^2):   0.0000000E+00  0.2189642E+08
+dPE/dt(W/m^2):   0.0000000E+00  0.4100814E+00
+ Finished main timestepping loop         192
+ closing history files
+ writing timing data
+ calling t_finalizef
+ exiting program...

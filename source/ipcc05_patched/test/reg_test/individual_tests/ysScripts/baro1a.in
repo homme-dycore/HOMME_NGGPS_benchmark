@@ -1,0 +1,27 @@
+###############################################################
+# Leapfrog + PIO_INTERP 
+###############################################################
+#
+# Spectral Element -- Polvani et al baroclinic test
+# NE=9, dt=60, nu=7e5, filter_freq=0, NP=8, PLEV=20
+# (explicit leap-frog)
+#
+###############################################################
+
+test_name=baro1a
+exec_name=preqx
+
+# Variables required for this tests
+NP=8
+PLEV=20
+USE_PIO=0
+WITH_ENERGY=1
+# Number of CPUs to use 
+NCPU=24
+
+# The following paths are best specified frome HOMME_ROOT (the svn checkout directory)
+nameListFiles=$HOMME_ROOT/test/reg_test/$namelist_dir/${test_name}.nl
+vcoordFiles="$HOMME_ROOT/test/vcoord/*20*"
+nclFiles=$HOMME_ROOT/test/reg_test/ncl/${test_name}.ncl
+
+

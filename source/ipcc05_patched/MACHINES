@@ -1,0 +1,215 @@
+Cray XT5m (lynx) - Intel Compilers
+#C. Erath (January 30th, 2012): set everything to run HOMME running on lynx
+module load subversion
+module remove PrgEnv-pgi/2.2.48B
+module load PrgEnv-intel
+module remove xt-mpt/4.0.3
+module load xt-mpich2
+
+module load netcdf/4.0.1.3
+module load pnetcdf/1.2.0
+
+module load ncl/6.0.0
+
+export F77=ftn
+export FC=ftn
+export F90=ftn
+export CC=cc
+export INCLUDE="-I/contrib/pnetcdf/1.2.0/intel/include -I/opt/cray/netcdf/4.0.1.3/netcdf-intel/include"
+export LDFLAGS="-L/contrib/pnetcdf/1.2.0/intel/lib -L/opt/cray/netcdf/4.0.1.3/netcdf-intel/lib"
+export NETCDF_PATH="/opt/cray/netcdf/4.0.1.3/netcdf-intel"
+export PNETCDF_PATH="/contrib/pnetcdf/1.2.0/intel"
+export LIBS=""
+export FCFLAGS="-g -O2"
+export CPP="cpp"
+
+export PBS_O_WORKDIR="/glade/home/erath/hommelynx/test/cslamtest"
+
+# use configure: 
+#./configure NC=$(NC) NP=$(NP) PLEV=$(PLEV) --enable-blas --enable-lapack --enable-pio --with-pnetcdf=$(PNETCDF_PATH) --with-netcdf=$(NETCDF_PATH)
+
+
+
+BlueGene/L (Frost) - IBM Compilers
+
+setenv F77 mpxlf
+setenv FC mpxlf90
+setenv CC mpixlc
+setenv LDFLAGS "-L/bgl/local/software/bgl/lib/ -L/bgl/local/software/bgl/mpi_trace/"
+setenv LIBS "-lscal -lmpitrace_f"
+setenv FFLAGS "-g -O3"
+setenv CFLAGS "-g -O2"
+setenv FCFLAGS "-qfullpath -qarch=440 -g -O3 -qstrict -qalias=noaryovrlp -qsuffix=cpp=F90"
+setenv PNETCDF_PATH "/contrib/bgl/parallel-netcdf-1.1.1"
+setenv NETCDF_PATH "/contrib/bgl/netcdf-3.6.2"
+./configure --host=powerpc64-ibm --enable-blas --enable-lapack --with-netcdf=/contrib/bgl/netcdf-3.6.2 --with-pnetcdf=/contrib/bgl/parallel-netcdf-1.1.1 --enable-bgl
+
+Bluefire - IBM Compilers
+setenv NETCDF_PATH /contrib/netcdf/4.1.3_mpi
+setenv PNETCDF_PATH /contrib/pnetcdf
+setenv FFLAGS "-g -O3"
+setenv CPP "mpcc -E"
+setenv FC mpxlf90
+setenv LIBS -lnetcdff
+setenv LDFLAGS "-L/contrib/netcdf/4.1.3_mpi/lib -L/usr/local/lib"
+./configure --host=powerpc-ibm-aix5.3.0.0 --enable-blas --enable-lapack --with-netcdf=$NETCDF_PATH --with-pnetcdf=$PNETCDF_PATH  NP=4 NLEV=1
+To configure with Bluefire linpack/lapack, just remove "--enable-blas --enable-lapack"
+Notice that because this version of the netCDF library breaks the Fortran code into a separate library (libnetcdff.a) then it is necessary to pass to the build system this information via LIBS and LDFLAGS
+
+
+
+
+
+
+Catalyst: Linux workstation - GNU compilers
+
+setenv NETCDF_PATH /home/jgarcia/lib/netcdf-4.1.1
+setenv F77 mpif77
+setenv FC mpif90
+setenv CC mpicc
+setenv CFLAGS "-g -O2"
+setenv FCFLAGS "-g -O3 -ffree-line-length-280 -frecord-marker=4 -fconvert=little-endian"
+setenv FFLAGS "-g -O3 -ffree-line-length-280 -frecord-marker=4 -fconvert=little-endian"
+setenv LIBS "-lcurl -lhdf5 -lhdf5_hl"
+ ./configure --enable-blas --enable-lapack --with-netcdf=/home/jgarcia/lib/netcdf-4.1.1 --with-pnetcdf=/home/jgarcia/lib/parallel-netcdf-1.1.1 --with-arch=Linux
+
+
+Sandia Redsky Linux cluster:
+
+setenv PNETCDF_PATH /projects/ccsm/pnetcdf1.2.0-intel
+setenv NETCDF_PATH /projects/ccsm/netcdf4.2-intel
+setenv FCFLAGS "-O2 -w90 -traceback"
+#setenv FCFLAGS "-openmp -O2 -w90 -traceback"
+setenv F90FLAGS "$FCFLAGS"
+setenv CFLAGS "-g -O2 -DFORTRANUNDERSCORE"
+setenv FC mpif90 ; setenv F77 mpif90 ; setenv MPIF90 mpif90
+setenv MPICC mpicc
+./configure
+
+
+
+
+
+JaguarPF ORNL Cray XT5
+
+module load netcdf/3.6.2
+module load p-netcdf/1.1.1
+setenv NETCDF_PATH $NETCDF_DIR
+setenv FCFLAGS "-fast -Mvect"
+setenv F90FLAGS "-fast -Mvect"
+setenv FC ftn ; setenv F77 ftn ; setenv MPIF90 ftn
+setenv PNETCDF_PATH $PNETCDF_DIR
+
+
+MAC OS 10.8 Mountain Lion with gfortran/openMPI/netcdf from homebrew:
+
+setenv NETCDF_PATH /usr/local
+setenv FCFLAGS  "-O2 -ffree-line-length-180 -D_Linux"
+setenv F90FLAGS "$FCFLAGS"
+setenv CFLAGS  "-g -O2 -DFORTRANUNDERSCORE"
+setenv MPICC mpicc
+setenv CPP "mpif90 -E"
+setenv FC mpif90; setenv F90 mpif90 ; setenv MPIF90 mpif90
+
+works with OS10 linpack/lapack system libraries:
+  ./configure --with-netcdf=$NETCDF_PATH NP=4 PLEV=1
+
+
+
+
+
+Sierra LLNL Intel+Infiniband
+
+use pgi-9.0.4
+use mvapich2-pgi-1.5
+setenv NETCDF_DIR /usr/local/tools/netcdf-pgi
+setenv NETCDF_PATH $NETCDF_DIR
+# link problem when setting pnetcdf parameters below
+#setenv PNETCDF_DIR /usr/local/tools/parallel-netcdf-pgi-1.2.0
+#setenv PNETCDF_PATH $PNETCDF_DIR
+setenv MPI_DIR /usr/local/tools/mvapich2-pgi-1.5
+setenv LDFLAGS "-L$NETCDF_DIR/lib"
+# need to use big_endian files
+setenv FCFLAGS "-byteswapio -Mextend -O2 -mp -g -D_Linux -DLINUX -DSPMD -I$NETCDF_DIR/include  -I$MPI_DIR/include"
+setenv F90FLAGS "-byteswapio -Mextend -O2 -mp -g -D_Linux -DLINUX -DSPMD -I$NETCDF_DIR/include  -I$MPI_DIR/include" 
+setenv FC mpif90 ; setenv F77 mpif90 ; setenv MPIF90 mpif90
+setenv LDFLAGS "$LDFLAGS"
+
+
+Goldbach (CGD) - NAG Compiler
+source /usr/local/nag/nag-tcsh.rc
+setenv NETCDF_DIR /usr/local/netcdf-gcc-nag
+setenv NETCDF_PATH $NETCDF_DIR
+setenv MPI_DIR /usr/local/openmpi-gcc-nag
+setenv PATH "${PATH}:${MPI_DIR}/bin"
+setenv LDFLAGS "$LDFLAGS -L$NETCDF_DIR/lib"
+# Suggested cmake flags
+# -DWITH_PNETCDF=OFF
+# -DCMAKE_C_COMPILER=/usr/local/openmpi-gcc-nag/bin/mpicc
+# -DCMAKE_Fortran_COMPILER=/usr/local/openmpi-gcc-nag/bin/mpif90
+
+Goldbach (CGD) - Intel Compiler
+source /usr/local/intel-cluster/bin/ifortvars.csh intel64
+setenv NETCDF_DIR /usr/local/netcdf-intel-cluster
+setenv NETCDF_PATH $NETCDF_DIR
+setenv HDF5_DIR /usr/local
+setenv MPI_DIR /cluster/openmpi-qlc-intel
+setenv LDFLAGS "-L$NETCDF_DIR/lib"
+# Suggested cmake flags
+# -DWITH_PNETCDF=OFF
+# -DCMAKE_C_COMPILER=/usr/mpi/intel/openmpi-1.4.3-qlc/bin/mpicc
+# -DCMAKE_Fortran_COMPILER=/usr/mpi/intel/openmpi-1.4.3-qlc/bin/mpif90
+# -DNETCDF_DIR:PATH=$NETCDF_DIR
+# -DHDF5_DIR:PATH=$HDF5_DIR
+
+Goldbach (CGD) - PGI Compiler
+
+setenv NETCDF_DIR /usr/local/netcdf-4.3.0-pgi-pgcc-pghf-13.7
+setenv NETCDF_PATH $NETCDF_DIR
+setenv MPI_DIR /usr/mpi/pgi/openmpi-1.4.3-qlc
+set PGI="/usr/local/pgi-pgcc-pghf-13.7/linux86-64"
+setenv PATH "${PATH}:${MPI_DIR}/bin:${PGI}/bin"
+setenv LD_LIBRARY_PATH "${PGI}/libso"
+setenv FFLAGS "-g -nomp -lgomp"
+setenv CFLAGS "-g -nomp"
+setenv LDFLAGS "$LDFLAGS -L$NETCDF_DIR/lib -lgomp"
+
+# Suggested cmake flags
+# -DWITH_PNETCDF=OFF
+# -DCMAKE_C_COMPILER=/usr/mpi/pgi/openmpi-1.4.3-qlc/bin/mpicc
+# -DCMAKE_Fortran_COMPILER=/usr/mpi/pgi/openmpi-1.4.3-qlc/bin/mpif90
+
+Generic Linux Workstation (global) environment and build of libraries and code
+
+export GCC_BASE_DIR="/opt/gcc-4.6.1"
+export MPI_BASE_DIR="/opt/openmpi/current"
+export PNETCDF_DIR="/opt/pnetcdf/current"
+export NETCDF_DIR="/opt/netcdf/current"
+export HDF5_DIR="/opt/hdf5/current"
+
+#!/bin/bash  -l
+export HOMME_ROOT="/home/4ue/trunk"
+export FC=mpif90
+export CC=mpicc
+export CFLAGS='-DPNETCDF_VERSION_MAJOR=1 -DPNETCDF_VERSION_MINOR=0 -DHAVE_MPI -DFORTRANUNDERSCORE'
+export FCFLAGS="$CFLAGS -ffree-form -ffree-line-length-none"
+export FFLAGS="$FCFLAGS"
+export F90FLAGS="$FCFLAGS"
+export LDFLAGS="-L$PNETCDF_DIR/lib -lpnetcdf"
+export LIBS="$LDFLAGS"
+export NETCDF_PATH="$NETCDF_DIR"
+export PNETCDF_PATH="$PNETCDF_DIR"
+export CONFARGS_PIO="MPIF90=mpif90 MPICC=mpicc REAL8=-fdefault-real-8 ENDIAN=-fconvert=swap BIT64=-m64"
+export CONFARGS_PRQ="NP=8 PLEV=26 --with-arch=Linux --with-netcdf=$NETCDF_DIR"
+# take out make clean for the first build
+#cd $HOMME_ROOT/utils/pio    && make clean && ./configure $CONFARGS_PIO     && make
+#cd $HOMME_ROOT/utils/timing && make clean                                  && make MPICC=mpicc
+cd $HOMME_ROOT/utils/pio    &&  ./configure  $CONFARGS_PIO                  && make
+cd $HOMME_ROOT/utils/timing &&                               make
+#cd $HOMME_ROOT/libs/blas    && make clean && ./configure $CONFARGS_BLS    && make
+#cd $HOMME_ROOT/libs/lapack  && make clean && ./configure $CONFARGS_LPK    && make
+# take out the distclean line when building for the first time
+#cd $HOMME_ROOT/build/sweqx  && make distclean && ./configure $CONFARGS_PRQ && make depends && make && mv sweqx sweqx.cpu
+cd $HOMME_ROOT/build/sweqx  &&  ./configure $CONFARGS_PRQ && make depends && make && mv sweqx sweqx.cpu
+cd $HOMME_ROOT/build/preqx  &&  ./configure $CONFARGS_PRQ && make depends && make 
+

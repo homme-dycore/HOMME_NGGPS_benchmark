@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+###############################################################
+# Semi-implicit + PIO
+###############################################################
+#
+# Spectral Element -- Polvani et al baroclinic test
+# NE=9, dt=600, nu=7e5, filter_freq=0, NP=8, PLEV=20
+# (semi-implicit)
+#
+###############################################################
+
+test_name=baro1b
+exec_name=preqx
+
+NP=8
+PLEV=20
+USE_PIO=1
+
+NCPU=24
+
+nameListFiles=$HOMME_ROOT/test/reg_test/$namelist_dir/${test_name}.nl
+vcoordFiles="$HOMME_ROOT/test/vcoord/*20*"
+nclFiles=$HOMME_ROOT/test/reg_test/${test_name}.ncl
+

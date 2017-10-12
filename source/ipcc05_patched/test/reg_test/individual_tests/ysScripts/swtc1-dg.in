@@ -1,0 +1,18 @@
+###############################################################
+#
+# Discontinuous Galerkin -- swtc1
+# NE=10, dt=100, nu=0, limiter=0, filter_freq=1, NP=6
+#
+###############################################################
+
+test_name=swtc1-dg
+exec_name=swdgx
+
+NP=6
+PLEV=1
+USE_PIO=0
+
+NCPU=16
+
+nameListFiles=$HOMME_ROOT/test/reg_test/namelists/${test_name}.nl
+

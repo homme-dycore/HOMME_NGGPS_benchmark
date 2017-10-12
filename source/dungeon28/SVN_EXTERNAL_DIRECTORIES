@@ -1,0 +1,6 @@
+utils/timing        https://svn-ccsm-models.cgd.ucar.edu/timing/branch_tags/asap_homme_gptl_tags/asap_homme_gptl_v03
+utils/pio           https://github.com/PARALLELIO/ParallelIO/tags/pio1_8_12/pio
+utils/pio/bin       https://github.com/PARALLELIO/genf90/tags/genf90_140121
+utils/pio/cmake     https://github.com/quantheory/CMake_Fortran_utils/tags/CMake_Fortran_utils_140408
+utils/cprnc https://svn-ccsm-models.cgd.ucar.edu/tools/cprnc/trunk_tags/cprnc_150301
+utils/cprnc/genf90  https://github.com/PARALLELIO/genf90/tags/genf90_140121

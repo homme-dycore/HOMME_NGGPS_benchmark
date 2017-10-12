@@ -1,0 +1,68 @@
+#!/bin/bash
+
+TOLERANCE="5.0e-10"
+
+#------------ Run / Input checking ------------------------------------
+
+# Check that we've provided the two files we're comparing
+if [ "$#" -ne 1 ]; then
+   echo "Use: ./verify <file> "
+   exit 1
+fi
+
+# Check that the files we need exist (file1):
+FILE=$1
+if [ ! -f ${FILE} ]; then
+   echo "Error: The file '$FILE' doesn't exist; exiting."
+   exit 1
+fi
+
+# Set up some useful defaults - bc's scale and line length:
+SCALE=80
+export BC_LINE_LENGTH=200
+
+
+#--------------------------------------------------------------------
+
+abs() {
+  result=$( echo "scale=100; sqrt( ($1)^2 )" | bc)
+  echo "${result}"
+}
+
+echo "Verification Test of '${FILE}' to relative difference of ${TOLERANCE}:"
+
+TOLERANCE=$( echo $TOLERANCE | sed 's/[eE]+\{0,1\}/*10^/g' )
+IFS=''
+
+while read -r LINE ; do
+  MIN=$( echo $LINE | awk '{print $5}' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  MAX=$( echo $LINE | awk '{print $7}' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  SUM=$( echo $LINE | awk '{print $9}' | sed 's/[eE]+\{0,1\}/*10^/g' )
+
+  MIN=$( abs $MIN | cut -c -16 )
+  MAX=$( abs $MAX | cut -c -16 )
+  SUM=$( abs $SUM | cut -c -16 )
+
+  FAILURES=0 
+  if (( $(echo "${MIN} > ${TOLERANCE}" | bc -l) )); then 
+     FAILURES=$((FAILURES+1))
+  fi
+
+  if (( $(echo "${MAX} > ${TOLERANCE}" | bc -l) )); then 
+     FAILURES=$((FAILURES+1))
+  fi
+
+  if (( $(echo "${SUM} > ${TOLERANCE}" | bc -l) )); then 
+     FAILURES=$((FAILURES+1))
+  fi
+
+  RESULT="FAIL"
+  if (( "${FAILURES}" == 0)) ; then
+      RESULT="PASS"
+  fi
+
+  echo "[$RESULT] ${LINE}"
+done < ${FILE}
+
+echo ""
+

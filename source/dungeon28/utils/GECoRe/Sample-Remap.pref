@@ -1,0 +1,20 @@
+# Remapping Preferences
+GridType = HOMME
+GridNodesPerElement = 4
+
+# Input file
+InputFile = ./my.nc
+
+# Output file
+OutputFile = outRemapped.nc
+
+# Variables
+Variables = U V T
+
+# Shift
+OutputLongitudeShift = 0.0
+
+# Number of elements in each direction
+Longitudes = 360
+Latitudes = 180
+

@@ -1,0 +1,91 @@
+The following notes relate the the current status (3/14/2016) of OpenMP testing in HOMME:
+
+The Intel flags used for compilation:
+
+-DFORCE_Fortran_FLAGS="-assume byterecl -O3 -xAVX -ftz -g -I./ -no-prec-sqrt -no-prec-div -override-limits -qopt-report=5 -openmp -D_OPENMP -tracback" \
+-DFORCE_C_FLAGS="-O2 -g -openmp -D_OPENMP" \
+
+with the intel/16+ compiler
+
+Which regions to perform OpenMP testing on is determined in the file: thread_switches.h
+
+#define HORZ_REMAP_OPENMP 1
+#define TRACER_REMAP_OPENMP 1
+
+#define HORZ_PRIM_ADV_OPENMP 1
+#define VERT_PRIM_ADV_OPENMP 1
+
+#define EULER_STEP_OPENMP 1
+
+The number of threads are determined from the namelists:
+horz_num_threads             = 1
+vert_num_threads             = 1
+tracer_num_threads           = 1
+
+The following tests have been performed with these results:
+
+Experiment: baro2b
+
+Case 1:
+HORZ_REMAP_OPENMP  ; horz_num_threads=2  ; result=passes
+TRACER_REMAP_OPENMP; tracer_num_threads=2; result=passes
+HORZ_REMAP_OPENMP; horz_num_threads=2 and TRACER_REMAP_OPENMP; tracer_num_threads=2; result=passes
+
+HORZ_REMAP_OPENMP  ; horz_num_threads=2  ; and 
+TRACER_REMAP_OPENMP; tracer_num_threads=2; result=fails
+
+Case 2:
+HORZ_PRIM_ADV_OPENMP; horz_num_threads=2; result=fails
+VERT_PRIM_ADV_OPENMP; vert_num_threads=2; result=passes
+
+Case 3:
+EULER_STEP_OPENMP; horz_num_threads=2;   result=under development
+EULER_STEP_OPENMP; vert_num_threads=2;   result=passes
+EULER_STEP_OPENMP; tracer_num_threads=2; result=passes
+ULER_STEP_OPENMP; vert_num_threads=2 and EULER_STEP_OPENMP; tracer_num_threads=2; result=fails 
+
+
+Primary issues:
+Case 1:
+  None
+
+Case 2:
+  2.1 The non-reproducibility is a result of communications.
+  2.2 Moving the vertical dimension outside of compute_and_apply_rhs and
+      higher up the call tree has proven to be difficult; the issue is
+      understood and will be corrected once the communications issues have
+      been resolved.
+
+Case 3:
+  The non-reproducibility is a result of communications.
+
+Experiment: perfTestWACCM
+
+Case 1:
+HORZ_REMAP_OPENMP  ; horz_num_threads=2  ; result=passes
+TRACER_REMAP_OPENMP; tracer_num_threads=2; result=passes
+HORZ_REMAP_OPENMP; horz_num_threads=2 and TRACER_REMAP_OPENMP; tracer_num_threads=2; result=passes
+
+Case 2:
+HORZ_PRIM_ADV_OPENMP; horz_num_threads=2; result=fails
+VERT_PRIM_ADV_OPENMP; vert_num_threads=2; result=passes
+
+Case 3:
+EULER_STEP_OPENMP; horz_num_threads=2;   result=under development
+EULER_STEP_OPENMP; vert_num_threads=2;   result=passes
+EULER_STEP_OPENMP; tracer_num_threads=2; result=fails
+
+Primary issues:
+Case 1:
+  None 
+
+Case 2:
+  2.1 The non-reproducibility is a result of communications.
+  2.2 Moving the vertical dimension outside of compute_and_apply_rhs and
+      higher up the call tree has proven to be difficult; the issue is
+      understood and will be corrected once the communications issues have
+      been resolved.
+
+Case 3:
+
+N.B. The result=passes gives the identical result with the base case for the experiment.

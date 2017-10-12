@@ -1,0 +1,11 @@
+SET(CUSTOM_FLAG_FILES
+  ${HOMME_SOURCE_DIR}/src/common_movie_mod.F90
+  ${HOMME_SOURCE_DIR}/src/interp_movie_mod.F90
+)
+
+SET_SOURCE_FILES_PROPERTIES(
+  ${HOMME_SOURCE_DIR}/src/common_movie_mod.F90
+  ${HOMME_SOURCE_DIR}/src/interp_movie_mod.F90
+  PROPERTIES GENERATED TRUE COMPILE_FLAGS
+  "-Mpreprocess -Kieee -Mflushz -O0 -Mvect=nosse -mp -Minfo"
+)

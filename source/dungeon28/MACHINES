@@ -1,0 +1,42 @@
+Goldbach (CGD) - NAG Compiler
+source /usr/local/nag/nag-tcsh.rc
+setenv NETCDF_DIR /usr/local/netcdf-gcc-nag
+setenv NETCDF_PATH $NETCDF_DIR
+setenv MPI_DIR /usr/local/openmpi-gcc-nag
+setenv PATH "${PATH}:${MPI_DIR}/bin"
+setenv LDFLAGS "$LDFLAGS -L$NETCDF_DIR/lib"
+# Suggested cmake flags
+# -DWITH_PNETCDF=OFF
+# -DCMAKE_C_COMPILER=/usr/local/openmpi-gcc-nag/bin/mpicc
+# -DCMAKE_Fortran_COMPILER=/usr/local/openmpi-gcc-nag/bin/mpif90
+
+Goldbach (CGD) - Intel Compiler
+source /usr/local/intel-cluster/bin/ifortvars.csh intel64
+setenv NETCDF_DIR /usr/local/netcdf-intel-cluster
+setenv NETCDF_PATH $NETCDF_DIR
+setenv HDF5_DIR /usr/local
+setenv MPI_DIR /cluster/openmpi-qlc-intel
+setenv LDFLAGS "-L$NETCDF_DIR/lib"
+# Suggested cmake flags
+# -DWITH_PNETCDF=OFF
+# -DCMAKE_C_COMPILER=/usr/mpi/intel/openmpi-1.4.3-qlc/bin/mpicc
+# -DCMAKE_Fortran_COMPILER=/usr/mpi/intel/openmpi-1.4.3-qlc/bin/mpif90
+# -DNETCDF_DIR:PATH=$NETCDF_DIR
+# -DHDF5_DIR:PATH=$HDF5_DIR
+
+Goldbach (CGD) - PGI Compiler
+
+setenv NETCDF_DIR /usr/local/netcdf-4.3.0-pgi-pgcc-pghf-13.7
+setenv NETCDF_PATH $NETCDF_DIR
+setenv MPI_DIR /usr/mpi/pgi/openmpi-1.4.3-qlc
+set PGI="/usr/local/pgi-pgcc-pghf-13.7/linux86-64"
+setenv PATH "${PATH}:${MPI_DIR}/bin:${PGI}/bin"
+setenv LD_LIBRARY_PATH "${PGI}/libso"
+setenv FFLAGS "-g -nomp -lgomp"
+setenv CFLAGS "-g -nomp"
+setenv LDFLAGS "$LDFLAGS -L$NETCDF_DIR/lib -lgomp"
+
+# Suggested cmake flags
+# -DWITH_PNETCDF=OFF
+# -DCMAKE_C_COMPILER=/usr/mpi/pgi/openmpi-1.4.3-qlc/bin/mpicc
+# -DCMAKE_Fortran_COMPILER=/usr/mpi/pgi/openmpi-1.4.3-qlc/bin/mpif90

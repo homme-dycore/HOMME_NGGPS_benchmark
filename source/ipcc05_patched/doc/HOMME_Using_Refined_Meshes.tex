@@ -1,0 +1,452 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+% color white overrides turning links blue (via hyperref)
+\title[{\color{white}Variable Resolution CAM-SE}]{A Guide to Running CAM-SE with a Variable Resolution Mesh}
+\author[M. Levy]{M. Levy, C. Zarzycki, (your name here)}
+\institute[mlevy@ucar.edu]{}
+\date[February 12, 2013]{{\bf Breakout from CESM AMWG Meeting}\\February 12, 2013}
+%
+% NEW COMMANDS
+%
+\newcommand{\interpic}{\hyperlink{interpic}{\texttt{interpic}}}
+\newcommand{\template}{\hyperlink{template}{template}}
+\newcommand{\namelist}{\hyperlink{namelist}{\texttt{namelist\_definition.xml}}}
+%
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\usenavigationsymbolstemplate{}
+%\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+%\usepackage[metapost]{mfpic}
+%
+\begin{document}
+%
+\begin{frame}
+\maketitle
+\end{frame}
+%
+\begin{frame}
+\frametitle{Outline}
+\begin{block}{}
+\tableofcontents
+\end{block}
+\end{frame}
+%
+\section{Before You Begin}
+\begin{frame}
+\frametitle{A Few Disclaimers}
+\begin{block}{}
+\begin{itemize}
+\item This guide was written for CAM 5.2, the version of CAM found in CESM 1.1.1 (released in January 2013). Earlier versions of CAM do not support variable resolution CAM-SE, and later versions may require an updated guide.
+\item This guide assumes familiarity with HOMME, CAM, and CESM
+\item To run in CAM or CESM, you need to generate mesh and template files. This requires access to the stand-alone HOMME repository (you need to run HOMME to create the template file, and there are CUBIT scripts in the repo to create the mesh file).
+\end{itemize}
+\end{block}
+\end{frame}
+%%
+%\begin{frame}
+%\frametitle{A Few Disclaimers / Definitions}
+%\begin{block}{Definitions}
+%\begin{itemize}
+%\item Environment Variables
+%\begin{itemize}
+%\item \$CCSMROOT -- the directory where CESM is installed; you need write-access
+%\item \$CASEROOT -- the directory where we will set up the CAM-SE var res run
+%\item \$EXEROOT -- the directory where CESM will store output
+%\end{itemize}
+%\end{itemize}
+%\end{block}
+%\end{frame}
+%%
+\section{Mesh Refinement in Stand-alone HOMME}
+\subsection{One-time Setup}
+\begin{frame}
+\frametitle{One-time Setup for Stand-alone HOMME}
+\begin{block}{}
+\begin{enumerate}
+\item Check out the latest HOMME trunk:
+\begin{itemize}
+\item[\$] \texttt{svn co}
+\href{https://svn-homme-model.cgd.ucar.edu/trunk/}{\texttt{\underline{https://svn-homme-model.cgd.ucar.edu/trunk/}}} \texttt{\$HOMME}
+\end{itemize}
+\item Generate (or download) the mesh file that is refined in your area of interest:
+\begin{itemize}
+\item Mesh files must be in the exodus format
+\item CUBIT (software out of Sandia) can create exodus mesh files
+\item CUBIT examples can be found in \texttt{\$HOMME/utils/CUBIT\_scripts/}
+\end{itemize}
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\subsection{Using HOMME with a Mesh File}
+\begin{frame}
+\frametitle{Three Options for Running HOMME with a Mesh File}
+\begin{block}{}
+\begin{enumerate}
+\item Run shallow water / primitive equation test cases with your new mesh
+\item Generate a \template{} file
+\begin{itemize}
+\item Needed to interpolate CAM initial conditions onto the new mesh
+\end{itemize}
+\item Generate a SCRIP mesh file
+\begin{itemize}
+\item Needed to generate CESM mapping files
+\end{itemize}
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\begin{frame}
+\frametitle{Running Standard Tests in HOMME}
+\end{frame}
+%
+\hypertarget{template}{}
+\begin{frame}
+\frametitle{Generating a Template File to Run CAM-SE}
+A ``template'' file only contains the latitude and longitude fields for every GLL node in the mesh
+\begin{block}{}
+\begin{enumerate}
+\item Run the test found in \texttt{\$HOMME/tests/\_\_\_\_}.
+\begin{itemize}
+\item Make sure the script points to your gridfile in the namelist
+\item This test will run a single timestep of \texttt{\_\_\_\_} and then output on the native grid.
+\end{itemize}
+\item Pull the latitude and longitude fields out of the output with an NCO tool:
+\begin{itemize}
+\item[\$] \texttt{ncks -O -v lat,lon homme\_output.nc \$template}
+\end{itemize}
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\hypertarget{scrip}{}
+\begin{frame}[containsverbatim]
+\frametitle{Generating a SCRIP File to Run CESM}
+\begin{block}{}
+
+Follow the same instructions to generate a template file. There is a script in \texttt{hommetrunk/test/template} called \texttt{HOMME2SCRIP.ncl}. This NCL script requires lat, lon, cv\_lat, cv\_lon, and area to be output from the template run. This can be specified by adding: \\
+
+\texttt{output\_varnames1='area','cv\_lat','cv\_lon'} \\
+
+to the input namelist (generally input.nl) \\
+
+After those variables are added to the history file, extract the fields and run \texttt{HOMME2SCRIP.ncl}.
+
+\begin{verbatim}
+ncks -O -v lat,lon,area,cv_lat,cv_lon homme_output.nc ${mesh}_tmp.nc
+ncl $input/HOMME2SCRIP.ncl  name="$mesh"  ne=$ne
+rm -f ${mesh}_tmp.nc
+\end{verbatim}
+
+A skeleton runscript can be found in \texttt{HOMMETRUNK/test/template/makegrid.job}.
+
+\end{block}
+\end{frame}
+%
+\section{Mesh Refinement in Stand-alone CAM-SE}
+\subsection{One-time Setup}
+\begin{frame}
+\frametitle{One-time Setup for Stand-alone CAM-SE}
+\begin{block}{}
+\begin{enumerate}
+\item Follow the steps in the stand-alone HOMME section to generate a template file
+\item Use the \interpic{} tool (from an old version of CAM) to interpolate initial conditions onto your mesh.
+\item Check out the CESM 1.1.1 release:\\
+\begin{itemize}
+\item[\$] \texttt{svn co}
+\href{https://svn-ccsm-release.cgd.ucar.edu/model_versions/cesm1_1_1}{\texttt{https://svn-ccsm-release.cgd.ucar.edu/}}
+\href{https://svn-ccsm-release.cgd.ucar.edu/model_versions/cesm1_1_1}{\texttt{model\_versions/cesm1\_1\_1}} \texttt{\$CCSMROOT}
+\end{itemize}
+\item Edit \namelist{} file in \texttt{\$CCSMROOT/models/atm/}
+\texttt{cam/bld/namelist\_files/} (needed to set some necessary variables in the \texttt{\&ctl\_nl} namelist)
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\hypertarget{interpic}{}
+\begin{frame}
+\frametitle{Using \texttt{interpic}}
+\begin{block}{Multi-step process}
+\begin{enumerate}
+\item Get \texttt{interpic} from
+\href{https://svn-ccsm-models.cgd.ucar.edu/cam1/branches/homme_cam3_5_29/models/atm/cam/tools/interpic_new/}{\texttt{\underline{https://svn-ccsm-models.cgd.ucar.edu/}}}
+\href{https://svn-ccsm-models.cgd.ucar.edu/cam1/branches/homme_cam3_5_29/models/atm/cam/tools/interpic_new/}{\texttt{\underline{cam1/branches/homme\_cam3\_5\_29/models/atm/cam/tools/}}}
+\href{https://svn-ccsm-models.cgd.ucar.edu/cam1/branches/homme_cam3_5_29/models/atm/cam/tools/interpic_new/}{\texttt{\underline{interpic\_new/}}}
+\item \texttt{interpic} needs template file (from stand-alone HOMME) and initial condition file (distributed with CESM via 
+\href{https://svn-ccsm-inputdata.cgd.ucar.edu/trunk/inputdata}{\texttt{\underline{https://svn-ccsm-inputdata.cgd.ucar.edu/trunk/inputdata}}})
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\hypertarget{namelist}{}
+\begin{frame}[containsverbatim]
+\frametitle{Add the Following to \texttt{namelist\_definition.xml}}
+\begin{block}{}
+\begin{verbatim}
+<entry id="fine_ne" type="integer" category="homme"
+       group="ctl_nl" valid_values="" >
+</entry>
+
+<entry id="hypervis_power" type="real" category="homme"
+       group="ctl_nl" valid_values="" >
+</entry>
+
+<entry id="max_hypervis_courant" type="real" category="homme"
+       group="ctl_nl" valid_values="" >
+</entry>
+
+<entry id="mesh_file" type="char*256" category="homme"
+       group="ctl_nl" valid_values="" >
+</entry>
+\end{verbatim}
+\end{block}
+\end{frame}
+%
+\subsection{Using CAM-SE with a Mesh File}
+\begin{frame}
+\frametitle{Two Options for Running CAM-SE with a Mesh File}
+\begin{block}{}
+\begin{enumerate}
+\item Aquaplanet with CAM4 physics
+\item Aquaplanet with CAM5 physics
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Running CAM4 Aquaplanet with your Mesh}
+\begin{block}{(1) Build CAM executable}
+\begin{itemize}
+\item[\$] \verb|cd $CCSMROOT/models/atm/cam/bld|
+\item[\$] \verb|./configure -phys cam4 -ocn aquaplanet -dyn homme \|
+               \verb|-spmd -nosmp -hgrid ne16np4 -fflags -DMESH \| \verb|-cam_bld $CASEROOT| \\
+Note: yellowstone requires \verb|-fc mpif90 -fc_type intel| flags, as well as \verb|-nc_inc $NETCDF/include| and \verb|-nc_lib $NETCDF/lib|
+\item[\$] \verb|cd $CASEROOT|
+\item[\$] \verb|make|
+\end{itemize}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Running CAM4 Aquaplanet with your Mesh}
+\begin{block}{(2) Build CAM namelist}
+\begin{itemize}
+\item[\$] \verb|cd $CASEROOT|
+\item[\$] \verb|$CCSMROOT/models/atm/cam/bld/build-namelist \|
+\verb|-ignore_ic_date -csmdata=$CESMDATAROOT/inputdata \|
+\verb|-namelist "`cat namelist.tmp`"|
+\end{itemize}
+\end{block}
+\begin{block}{Note about namelist.tmp}
+The file \verb|namelist.tmp| should contain all the variables you want to change in \verb|atm_in|. For example, the file \verb|/glade/u/home/mlevy/namelist.tmp| on yellowstone uses recommended values from \href{https://sites.google.com/a/lbl.gov/regional_project/home/atm_in-namelist-with-use_case-aquaplanet_cam4}{\texttt{https://sites.google.com/a/lbl.gov/regional\_project/}}
+\href{https://sites.google.com/a/lbl.gov/regional_project/home/atm_in-namelist-with-use_case-aquaplanet_cam4}{\texttt{home/atm\_in-namelist-with-use\_case-aquaplanet\_cam4}}. Variables that are specific to variable resolution are outlined on the next slide.
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{The namelist.tmp file}
+\begin{block}{namelist.tmp}
+\begin{verbatim}
+&camexp
+se_ne = 0
+mesh_file = '____.g' ! File you create
+ncdata = '____' ! File generated by interpic
+fine_ne = 30 ! Resolution (ne) in known region
+nu = 1e15   ! Viscosity in specified region - will be scaled
+nu_q = 1e15 ! by hypervis_power as grid coarsens
+hypervis_power = 3.322 ! How viscosity is scaled across
+                       ! resolutions (2^3.322 = 10)
+max_hypervis_courant = 1.9 ! Limit nu based on CFL
+/
+\end{verbatim}
+\end{block}
+\begin{block}{Other notes}
+You can also set the time step (as well as any time-splitting), output options, and stop options in this file.
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Running CAM5 Aquaplanet with your Mesh}
+\begin{block}{CAM5 changes}
+Currently, the easiest way to handle this is use the bulk aerosol model (BAM) as in CAM4. Andrew Gettlemen has introduced modifications to the CAM5 physics package to allow for bulk aerosols to be used in lieu of the new modal package (MAM). If you follow the steps outlined for running CAM4 aquaplanet, there are minor changes required for CAM5.
+\end{block}
+\begin{block}{(1) Build CAM executable changes}
+Build with CAM5 physics by specifying -phys cam5. This should automatically build the model with 30 vertical levels (the CAM5) default, however, you can also specify -nlev 30.
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{CAM5 Aquaplanet (continued)}
+\begin{block}{(2) CAM namelist changes}
+(Optional) You can specify \verb|-use_case -aquaplanet_CAM5| for a variety of default settings (orbital parameters, etc.) \\
+In the \verb|namelist.tmp| file a few entries are needed
+\begin{enumerate}
+\item Add \verb|prescribed_aero_model = 'bulk'|
+\item Add \\
+ \verb|prescribed_aero_datapath='/path/to/cam_inputdata'| \
+ \verb|prescribed_aero_file='aero_1.9x2.5_L26_2000clim_c090803.nc'| \
+ \verb|prescribed_aero_cycle_yr=2000| \
+ \verb|prescribed_aero_type='CYCLICAL'|
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{CAM5 aerosol notes}
+\begin{block}{Notes about the aerosol file}
+The file has been provided by Brian Medeiros and can be found (for now) in \verb|/glade/p/work/zarzycki/cam_inputdata| on Yellowstone. It can also be generated by using an NCL routine to take a standard AMIP aerosol driver file and zonally/hemispherically averaging each constituent. When using BAM, CAM will interpolate from a regular lat/lon grid (of any vertical level) so it's acceptable to use CAM4 data (as the L26 indicates).
+\end{block}
+\begin{block}{Modal aerosols and aquaplanet}
+The option to use the modal aerosol package in an aquaplanet setup is still being developed for CAM-SE. The simplest way to achieve this is likely generating all new surface emission grids on the native SE grid) and zeroing out all aerosols except sea salt. If interested, contact Colin Zarzycki or Brian Medeiros.
+\end{block}
+\end{frame}
+%
+\section{Mesh Refinement in the full CESM}
+\subsection{One-time Setup}
+\begin{frame}[containsverbatim]
+\frametitle{One-time Setup for CESM}
+\begin{block}{}
+\begin{enumerate}
+\item Follow the steps in the CAM-SE setup file (checkout the code, run \interpic, and edit \namelist)
+\item Follow the steps in the stand-alone HOMME section to \hyperlink{scrip}{generate a} \hyperlink{scrip}{SCRIP grid file}
+\item Use the tools in \verb|$CCSMROOT/mapping| to generate mapping and domain files
+\item Edit \verb|$CCSMROOT/scripts/sample_grid_file.xml| to create a new resolution that uses your mesh file
+\item Generate a topography dataset on the refined grid.
+\item Follow CESM scripts; add -DMESH to Macros file before build.
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\subsection{Using CESM with a Mesh File}
+\begin{frame}[containsverbatim]
+\frametitle{Generating mapping/domain files}
+\begin{block}{}
+Using the \hyperlink{scrip}{SCRIP grid file} for your CAM-SE grid, use the tools in \verb|$CCSMROOT/mapping|.
+\begin{enumerate}
+\item Select a grid for land/ocean components. Find (or generate) the corresponding SCRIP files for these grids.
+\item Use the scripts in \verb|$CCSMROOT/mapping/gen_atm/gen_mapping_files| to generate atm$\rightarrow$lnd, lnd$\rightarrow$atm, ocn$\rightarrow$atm, atm$\rightarrow$ocn files using ESMF.
+\item Use the scripts in \verb|$CCSMROOT/mapping/gen_atm/gen_domain_files| to generate domain files. You should use the conservative (aave) ocn$\rightarrow$atm mapping file and input to the \verb|gen_domain| binary.
+\item These maps/domain files will need to be added to \verb|$CCSMROOT/scripts/ccsm_utils/Case.template/config_grid.xml| and \verb|$CCSMROOT/drv/bld/namelist_files/namelist_defaults.xml|
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Adding a new grid to config\_grid.xml }
+\begin{block}{}
+\verb|$CCSMROOT/scripts/ccsm_utils/Case.template/config_grid.xml| add this block of code (see next slide):
+\begin{quote}
+\tiny
+\begin{verbatim}
+<horiz_grid
+GRID="TRIGRID_NAME"
+SHORTNAME="ATMGRID_LNDGRID_OCNGRID"
+CAM_DYCORE="homme"
+ATM_GRID="ne120np4"
+LND_GRID="0.9x1.25"
+OCN_GRID="gx1v6"
+ICE_GRID="gx1v6"
+ROF_GRID="r05"
+GLC_GRID="gland5UM"
+ATM_NCPL="48"
+OCN_NCPL="1"
+CCSM_GCOST="4"
+ATM_DOMAIN_PATH="/path/to/domains"
+LND_DOMAIN_PATH="$DIN_LOC_ROOT/share/domains"   
+ICE_DOMAIN_PATH="/path/to/domains"
+OCN_DOMAIN_PATH="/path/to/domains"
+ATM_DOMAIN_FILE="domain.lnd.ATMGRID_OCNGRID.130428.nc"
+LND_DOMAIN_FILE="domain.lnd.LNDGRID_OCNGRID.090309.nc"
+ICE_DOMAIN_FILE="domain.ocn.OCNGRID.130428.nc"
+OCN_DOMAIN_FILE="domain.ocn.OCNGRID.130428.nc"
+DESC="My grids name with XXX land and YYYY ocean grids"
+/>
+\end{verbatim}
+\end{quote}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Adding a new grid to config\_grid.xml }
+\begin{block}{}
+Some explanations (see CESM documentation for others):
+\begin{enumerate}
+\item \verb|ATM_GRID| can be left as one of the supported SE grids for the time being. Building with -DMESH and calling a .g mesh file repopulates the SE grid regardless of this value. NOTE: It is likely to require change if you plan on using the modal aerosol model since it would require emission files be generated on the native var-res grid.
+\item \verb|ATM_NCPL| and \verb|OCN_NCPL| are the coupling frequency of the atmosphere/ocean.
+\item If you are using a supported land grid, you do not need to modify \verb|LND_DOMAIN_FILE| and can leave it pointed towards the default CESM directory.
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Adding a new grid to namelist\_defaults.xml }
+\begin{block}{}
+In \verb|$CCSMROOT/drv/bld/namelist_files/namelist_defaults.xml| add this block of code:
+\begin{quote}
+\tiny
+\begin{verbatim}
+<atm2ocn_fmapname grid="TRIGRID_NAME">/path/to/maps/map_ATM_TO_OCN_aave.nc</atm2ocn_fmapname>
+<atm2ocn_smapname grid="TRIGRID_NAME">/path/to/maps/map_ATM_TO_OCN_aave.nc</atm2ocn_smapname>
+<atm2ocn_vmapname grid="TRIGRID_NAME">/path/to/maps/map_ATM_TO_OCN_aave.nc</atm2ocn_vmapname>
+<ocn2atm_fmapname grid="TRIGRID_NAME">/path/to/maps/map_OCN_TO_ATM_aave.nc</ocn2atm_fmapname>
+<ocn2atm_smapname grid="TRIGRID_NAME">/path/to/maps/map_OCN_TO_ATM_aave.nc</ocn2atm_smapname>
+<atm2lnd_fmapname grid="TRIGRID_NAME">/path/to/maps/map_ATM_TO_LND_aave.nc</atm2lnd_fmapname>
+<atm2lnd_smapname grid="TRIGRID_NAME">/path/to/maps/map_ATM_TO_LND_aave.nc</atm2lnd_smapname>
+<lnd2atm_fmapname grid="TRIGRID_NAME">/path/to/maps/map_LND_TO_ATM_aave.nc</lnd2atm_fmapname>
+<lnd2atm_smapname grid="TRIGRID_NAME">/path/to/maps/map_LND_TO_ATM_aave.nc</lnd2atm_smapname>
+\end{verbatim}
+\end{quote}
+\end{block}
+\begin{block}{}
+\begin{enumerate}
+\item I have not seen a fundamental difference between using the aave (conservative), blin (bilinear), or patc (patch) maps.
+\end{enumerate}
+\end{block}
+\end{frame}
+%
+\begin{frame}[containsverbatim]
+\frametitle{Initializing and modifying to user\_nl\_cam }
+\begin{block}{}
+For AMIP runs, initial data can be interpolated using an initial data set from a regular grid and interpic (as in the aquaplanet setup). The model may require a spinup period of 2-4 weeks with a much shorter timestep to balance the atmosphere, especially over smoothed topography. The simulation should be spun up for 2-3 additional months to let the flow acclimate to mesh refinement. In the case root directory, \verb|user_nl_cam| should be modified to add the following:
+\end{block}
+\begin{block}{}
+\begin{quote}
+\tiny
+\begin{verbatim}
+&cam_inparm
+ ncdata = '/path/to/INIC/inic.grid.nc'
+ bnd_topo = '/path/to/TOPO/topo.grid.nc'
+ prescribed_aero_model = 'bulk'
+/
+&ctl_nl
+ se_ne=0
+ nu=1.1000e13
+ nu_div=2.5000e13
+ hypervis_subcycle=3
+ hypervis_power=3.322
+ max_hypervis_courant=3.1
+ fine_ne=120
+ mesh_file = "/path/to/mesh/mesh.g"
+\end{verbatim}
+\end{quote}
+\end{block}
+\end{frame}
+%
+\begin{frame}
+\frametitle{Generating topography datasets}
+\begin{block}{}
+Currently, the easiest way to generate a topography dataset for CAM is to use \interpic{} to interpolate a high-resolution topography file to your CAM-SE grid and use standalone CAM to run a Laplacian smoother over the topography. A modified version of this that includes additional scaling coefficients needs to be added to the SE trunk.
+\end{block}
+\end{frame}
+%
+\section{Tuning Tips}
+\begin{frame}[containsverbatim]
+\frametitle{Tuning Tips}
+\begin{block}{Time step}
+CAM4 uses \verb|dtime=600|, while CAM5 uses \verb|dtime = 1800|. You can adjust the dynamics timestep and tracer timestep with \verb|se_nsplit| and \verb|q_split|. I believe the dyn timestep is \verb|dtime/se_nsplit| while the tracer timestep is \verb|dtime/(se_nsplit*q_split)|; stick with \verb|q_split=4| (because the CFL condition is roughly 4x stricter for tracers than dynamics) and use \verb|se_nsplit| to set the dynamics timestep according to the most refined region.
+\end{block}
+\begin{block}{Viscosity coefficients}
+Set \verb|nu| and \verb|nu_q| as if you were running on a uniform mesh with \verb|ne = fine_ne|. The \verb|hypervis_power| variable will take care of scaling it across resolutions.
+\end{block}
+\end{frame}
+\end{document}

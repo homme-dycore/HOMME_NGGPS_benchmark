@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# These should be the only things a user needs to change:
+VARIABLES="t, omega, dp"
+
+#------------ Run / Input checking ------------------------------------
+
+# Check that we've provided the two files we're comparing
+if [ "$#" -ne 2 ]; then
+  echo "Use: ./rel_diff <file1> <file2>"
+  exit 1
+fi
+
+# Check that the files we need exist (file1):
+FILE1=$1
+if [ ! -f ${FILE1} ]; then
+  echo "Error: The file '$FILE1' doesn't exist; exiting."
+  exit 1
+fi
+
+# Check that the files we need exist (file2):
+FILE2=$2
+if [ ! -f ${FILE2} ]; then
+  echo "Error: The file '$FILE2' doesn't exist; exiting."
+  exit 1
+fi
+
+# Set up some useful defaults - bc's scale and line length:
+SCALE=80
+export BC_LINE_LENGTH=200
+
+# Sanitize the variable list for commas:
+VARIABLES=${VARIABLES//,/ }
+
+#------------ Support functions ---------------------------------------
+
+abs() {
+  result=$( echo "scale=100; sqrt( ($1)^2 )" | bc)
+  echo "${result}"
+}
+
+max() {
+  result=$( echo "scale=100; if ($1 > $2) { print $1 } else { print $2 }" | bc )
+  echo "${result}"
+}
+
+
+reldiff() {
+  diff=$( echo "scale=${SCALE}; $1 - $2 " | bc )
+  absdiff=$( abs $diff )
+  maxval=$( max "$1" "$2" )
+  result=$( echo "scale=${SCALE}; $absdiff / $maxval" | bc | cut -c -16 )
+  echo ${result}
+}
+
+calc() {
+  NAME=$1     # Name of variable
+  F1VALS=$2    # File #1's values
+  F2VALS=$3    # File #2's values
+
+  # Min:
+  F1=$( echo $F1VALS | awk '{print $3 }' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  F2=$( echo $F2VALS | awk '{print $3 }' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  RD_MIN=$( reldiff $F1 $F2 )
+
+  # Max:
+  F1=$( echo $F1VALS | awk '{print $4 }' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  F2=$( echo $F2VALS | awk '{print $4 }' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  RD_MAX=$( reldiff $F1 $F2 )
+
+  # Sum:
+  F1=$( echo $F1VALS | awk '{print $5 }' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  F2=$( echo $F2VALS | awk '{print $5 }' | sed 's/[eE]+\{0,1\}/*10^/g' )
+  RD_SUM=$( reldiff $F1 $F2 )
+
+  printf "%10s %-24s %-5s %-16e %-5s %-16e %-5s %-16e \n" "${VAR}" "Relative Differences" "Min: " "${RD_MIN}" "Max: " "${RD_MAX}" "Sum: " "${RD_SUM}"
+}
+
+#------------ Main loop -----------------------------------------------
+
+# Loop over the variables:
+for VAR in ${VARIABLES}; do
+  # Check that the line counts match for a variable:
+  LINES1=$( grep "  ${VAR} " ${FILE1} | wc -l )
+  LINES2=$( grep "  ${VAR} " ${FILE2} | wc -l )
+
+  # Check that the line counts match, else we don't have equal-length runs:
+  if [ "${LINES1}" -ne "${LINES2}" ]; then
+    echo "Error: Line counts don't match for '${VAR}'; runs aren't of equal number of steps?"
+    exit 1
+  fi
+
+  # The latest line is the one we want:
+  LASTLINE=${LINES1}
+
+  # Get last line values for each variable:
+  VALS1=$( grep "  ${VAR} " ${FILE1} | tail -1 )
+  VALS2=$( grep "  ${VAR} " ${FILE2} | tail -1 )
+
+  calc ${VAR} "${VALS1}" "${VALS2}"
+done

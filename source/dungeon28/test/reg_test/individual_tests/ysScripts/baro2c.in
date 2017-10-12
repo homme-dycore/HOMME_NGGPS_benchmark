@@ -1,0 +1,23 @@
+###############################################################
+# Restart, and energy conservation test
+###############################################################
+
+test_name=baro2c
+exec_name=preqx
+
+NP=4
+PLEV=26
+USE_PIO=0
+WITH_ENERGY=1
+
+NCPU=24
+
+nameListFiles="
+  $HOMME_ROOT/test/reg_test/$namelist_dir/${test_name}-run1.nl
+  $HOMME_ROOT/test/reg_test/$namelist_dir/${test_name}-run2.nl"
+vcoordFiles="$HOMME_ROOT/test/vcoord/*26*"
+
+OMP_SUB_TESTS=true
+OMP_NUM_THREADS=4   # max number of threads. actual number specified in namelist as 4
+ompNameListFiles=$HOMME_ROOT/test/reg_test/$namelist_dir/${test_name}-run2-omp.nl
+

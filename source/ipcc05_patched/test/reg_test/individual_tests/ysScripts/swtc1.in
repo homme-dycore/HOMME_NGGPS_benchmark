@@ -1,0 +1,20 @@
+###############################################################
+# RKSSP default benchmark (used to check nothing is broken)
+###############################################################
+#
+# Spectral Element -- swtc1
+# NE=10, dt=480, nu=0, limiter=4, filter_freq=0 NP=8
+#
+###############################################################
+
+test_name=swtc1
+exec_name=sweqx
+
+NP=8
+PLEV=4
+USE_PIO=0
+
+NCPU=16
+
+nameListFiles=$HOMME_ROOT/test/reg_test/namelists/${test_name}.nl
+
