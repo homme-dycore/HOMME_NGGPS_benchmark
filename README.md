@@ -49,6 +49,7 @@ be
 in which it was created.  An example file for a small case run on Cheyenne, verifying against Yellowstone,
 is shown below:
 
+```
 Verification Test of 'reldiff_original.txt' to relative difference of 5.0e-10:
 [PASS]          t Relative Differences     Min:  2.300000e-14     Max:  1.213000e-12     Sum:  0.000000e+00     
 [PASS]      omega Relative Differences     Min:  -4.792000e-11    Max:  2.522800e-11     Sum:  1.224410e-10     
@@ -60,6 +61,7 @@ Verification Test of 'reldiff_optimized.txt' to relative difference of 5.0e-10:
 [PASS]         dp Relative Differences     Min:  1.200000e-14     Max:  2.000000e-15     Sum:  0.000000e+00     
 
 Improvement: 1.5357x   Optimized:    1.288   Original:    1.978 
+```
 
 
 ### Verification 
@@ -69,6 +71,7 @@ of 2.220446049250313E-016 in a run on the 'Yellowstone' (NCAR) system.  This was
 run using the medium-sized case, and resulted in relative differences from
 the unperturbed cases of < 4e-10, as seen below:
 
+```
 Original Code:
     t Relative Differences     Min:  9.000000e-15     Max:  3.060000e-13    Sum:  0.000000e+00
 omega Relative Differences     Min:  -3.073000e-11    Max:  4.680800e-11    Sum:  2.331080e-10
@@ -78,6 +81,7 @@ Optimized Code:
     t Relative Differences     Min:  1.400000e-14     Max:  1.060000e-13    Sum:  0.000000e+00
 omega Relative Differences     Min:  -1.229000e-11    Max:  5.174000e-11    Sum:  2.226200e-10
    dp Relative Differences     Min:  5.000000e-15     Max:  1.200000e-14    Sum:  1.000000e-15
+```
 
   The automated testing uses a slightly higher value, 5e-10, to verify
 results.  This passes on Cheyenne, Yellowstone and Cori using the Intel 17
