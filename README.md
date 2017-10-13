@@ -50,9 +50,11 @@ in which it was created.  An example file for a small case run on Cheyenne, veri
 is shown below:
 
 ```
-Verification using 't' to a tolerance of 1.0e-11:
-Original:   [PASS]      t Relative Differences     Min:  2.300000e-14     Max:  1.213000e-12     Sum:  0.000000e+00     
-Optimized:  [PASS]      t Relative Differences     Min:  9.000000e-15     Max:  1.068000e-12     Sum:  0.000000e+00     
+Verification Test of 'reldiff_original.txt' to relative difference of 1.0e-11:
+[PASS]      t Relative Differences     Min:  2.300000e-14     Max:  1.213000e-12     Sum:  0.000000e+00     
+
+Verification Test of 'reldiff_optimized.txt' to relative difference of 1.0e-11:
+[PASS]      t Relative Differences     Min:  9.000000e-15     Max:  1.068000e-12     Sum:  0.000000e+00     
 
 Improvement: 1.5357x   Optimized:    1.288   Original:    1.978 
 ```
