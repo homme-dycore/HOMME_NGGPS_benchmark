@@ -104,6 +104,7 @@ dungeon28.  The previous results are in reverse chronological order.
 System: Cori
 Date:  January 2017
 Version tag: dungeon16
+
 | HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
 |---------|----------|-------------------------------------|
 | 4096    |  64      | 158.92 |
@@ -122,6 +123,7 @@ Version tag: dungeon16
 System: Cheyenne
 Date: January 2017
 Version tag: dungeon15
+
 | HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
 |-----------|----------|-------------------------------------|
 | 6144      |  171     | 96.72 |
@@ -147,6 +149,7 @@ Version tag: dungeon12
 System: Edison
 Date:   June 2015
 Version:
+
 | Cores   | Nodes   | Elapsed time (seconds) (2h, average) |
 | ------- |---------| -------------------------------------|
 |6144     | 256     | 66.54 |
