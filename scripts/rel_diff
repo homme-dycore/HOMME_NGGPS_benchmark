@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # These should be the only things a user needs to change:
-VARIABLES="t, omega, dp"
+VARIABLES="t"
 
 #------------ Run / Input checking ------------------------------------
 

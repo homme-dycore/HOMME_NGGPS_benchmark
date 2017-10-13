@@ -50,15 +50,9 @@ in which it was created.  An example file for a small case run on Cheyenne, veri
 is shown below:
 
 ```
-Verification Test of 'reldiff_original.txt' to relative difference of 5.0e-10:
-[PASS]          t Relative Differences     Min:  2.300000e-14     Max:  1.213000e-12     Sum:  0.000000e+00     
-[PASS]      omega Relative Differences     Min:  -4.792000e-11    Max:  2.522800e-11     Sum:  1.224410e-10     
-[PASS]         dp Relative Differences     Min:  2.800000e-14     Max:  7.000000e-15     Sum:  0.000000e+00     
-
-Verification Test of 'reldiff_optimized.txt' to relative difference of 5.0e-10:
-[PASS]          t Relative Differences     Min:  9.000000e-15     Max:  1.068000e-12     Sum:  0.000000e+00     
-[PASS]      omega Relative Differences     Min:  -1.424000e-11    Max:  5.570600e-11     Sum:  6.340800e-11     
-[PASS]         dp Relative Differences     Min:  1.200000e-14     Max:  2.000000e-15     Sum:  0.000000e+00     
+Verification using 't' to a tolerance of 1.0e-11:
+Original:   [PASS]      t Relative Differences     Min:  2.300000e-14     Max:  1.213000e-12     Sum:  0.000000e+00     
+Optimized:  [PASS]      t Relative Differences     Min:  9.000000e-15     Max:  1.068000e-12     Sum:  0.000000e+00     
 
 Improvement: 1.5357x   Optimized:    1.288   Original:    1.978 
 ```
@@ -67,23 +61,19 @@ Improvement: 1.5357x   Optimized:    1.288   Original:    1.978
 ### Verification 
 
   The verification is based off a perturbation test using a machine epsilon
-of 2.220446049250313E-016 in a run on the 'Yellowstone' (NCAR) system.  This was
-run using the medium-sized case, and resulted in relative differences from
-the unperturbed cases of < 4e-10, as seen below:
+of ~2.22e-16 in a run on the 'Yellowstone' (NCAR) system.  This was run using 
+the medium-sized case, and resulted in relative differences in temperature from 
+the unperturbed cases of < 1e-12, as seen below:
 
 ```
 Original Code:
     t Relative Differences     Min:  9.000000e-15     Max:  3.060000e-13    Sum:  0.000000e+00
-omega Relative Differences     Min:  -3.073000e-11    Max:  4.680800e-11    Sum:  2.331080e-10
-   dp Relative Differences     Min:  1.000000e-14     Max:  1.500000e-14    Sum:  0.000000e+00
 
 Optimized Code:
     t Relative Differences     Min:  1.400000e-14     Max:  1.060000e-13    Sum:  0.000000e+00
-omega Relative Differences     Min:  -1.229000e-11    Max:  5.174000e-11    Sum:  2.226200e-10
-   dp Relative Differences     Min:  5.000000e-15     Max:  1.200000e-14    Sum:  1.000000e-15
 ```
 
-  The automated testing uses a slightly higher value, 5e-10, to verify
+  The automated testing uses a slightly higher value, 1e-11, to verify
 results.  This passes on Cheyenne, Yellowstone and Cori using the Intel 17
 compilers.
 
@@ -105,9 +95,69 @@ General directions for configuring and building HOMME using cmake can be located
 
     https://wiki.ucar.edu/display/homme/The+HOMME+CMake+build+and+testing+system
 
+### Sample Results
+-----------------
+
+The sample results show timings for various versions of the optimized code.  The current version is 
+dungeon28.  The previous results are in reverse chronological order.
+
+System: Cori
+Date:  January 2017
+Version tag: dungeon16
+| HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
+|---------|----------|-------------------------------------|
+| 4096    |  64      | 158.92 |
+| 6144    |  96      | 103.53 |
+| 8192    |  128     |  77.25 |
+| 16384   |  256     |  41.13 |
+| 24576   |  384     |  28.06 |
+| 32768   |  512     |  23.64 |
+| 49152   |  768     |  14.60 |
+| 65536   |  1024    |  11.33 |
+| 98304   |  1536    |   7.87 |
+| 196608  |  3072    |   4.57 |
+| 393216  |  6144    |   2.87 |
 
 
+System: Cheyenne
+Date: January 2017
+Version tag: dungeon15
+| HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
+|-----------|----------|-------------------------------------|
+| 6144      |  171     | 96.72 |
+| 8192      |  228     | 83.32 |
+| 12288     |  342     | 55.90 |
+| 16384     |  456     | 41.37 |
+| 24576     |  683     | 26.89 |
+| 32768     |  911     | 19.22 |
+| 49152     |  1366    | 11.19 |
+| 65536     |  1821    |  7.75 |
+| 98304     |  2731    |  5.42 |
  
+
+System:  Yellowstone
+Date:    November 2016
+Version tag: dungeon12
+
+| HwCores   |   Nodes  | Elapsed time (seconds (2h, average) |
+|---------|----------|-------------------------------------|
+| 1024    |  64      | 588.97 |
+
+
+System: Edison
+Date:   June 2015
+Version:
+| Cores   | Nodes   | Elapsed time (seconds) (2h, average) |
+| ------- |---------| -------------------------------------|
+|6144     | 256     | 66.54 |
+|12288    | 512     | 33.38 |
+|24576    | 1024    | 16.34 |
+|49152    | 2048    |  7.79 |
+|98304    | 4096    |  3.28 |
+|131072   | 5462    |  2.48 |
+
+
+
 ## A full description of the dynamical core and configuration is provided below for reference.
 
 ```
