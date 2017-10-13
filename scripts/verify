@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOLERANCE="5.0e-10"
+TOLERANCE="1.0e-11"
 
 #------------ Run / Input checking ------------------------------------
 
